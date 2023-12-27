@@ -1,4 +1,4 @@
-version: '3.8' 
+version: '3.8'
 
 services:
   mongo-workout-plan:
@@ -10,8 +10,6 @@ services:
 
   mysql-nutrition:
     image: mysql:latest
-    ports:
-      - "3308:3306"
     volumes:
       - mysql_nutrition_data:/var/lib/mysql
     environment:
@@ -27,6 +25,10 @@ services:
   workout-plan-service:
     depends_on:
       - mongo-workout-plan
+      - user-service
+    links:
+      - mongo-workout-plan
+      - user-service
     image: yarin123/workout-plan-service
     ports:
       - "8081:8081"
@@ -37,17 +39,24 @@ services:
   nutrition-service:
     depends_on:
       - mysql-nutrition
-    image: yarin123/nutrition-service
+      - user-service
     ports:
-      - "3307:3306"
+      - "8082:8082"
+    links:
+      - mysql-nutrition
+      - user-service
+    image: yarin123/nutrition-service
     environment:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: 1234
       MYSQL_DB_HOST: mysql-nutrition
-      MYSQL_DB_PORT: 3308
+      MYSQL_DB_PORT: 3306
+      MYSQL_DATABASE: nutritiondb
 
   user-service:
     depends_on:
+      - mongo-user
+    links:
       - mongo-user
     image: yarin123/user-service
     ports:
@@ -55,7 +64,7 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-user
-
+      
   api-gateway-service:
     depends_on:
       - workout-plan-service
