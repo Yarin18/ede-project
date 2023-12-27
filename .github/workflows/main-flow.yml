@@ -17,14 +17,14 @@ jobs:
           distribution: adopt
       
       - name: Build, test and package project
-        working-directory: ./product-service
+        working-directory: ./workoutplan-service
         run: mvn package -DskipTests
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/product-service:latest ./product-service
+        run: docker build -t ${{ secrets.DOCKER_USER }}/workoutplan-service:latest ./workoutplan-service
 
       - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/product-service:latest
+        run: docker push ${{ secrets.DOCKER_USER }}/workoutplan-service:latest
