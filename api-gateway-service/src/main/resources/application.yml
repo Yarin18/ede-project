@@ -1,0 +1,32 @@
+server:
+  port: 8083
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: workout-plan-service
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/workouts
+          filters:
+            - SetPath=/api/order
+        - id: nutrition-service
+          uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/nutrition
+          filters:
+            - SetPath=/api/nutrition
+        - id: user-service
+          uri: http://${USER_SERVICE_BASEURL:localhost:8080}
+          predicates:
+            - Path=/users
+          filters:
+            - SetPath=/api/user
