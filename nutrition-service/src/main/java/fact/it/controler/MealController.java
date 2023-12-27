@@ -25,20 +25,20 @@ public class MealController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteMeal(final @PathVariable("id") Long id) {
-        mealService.deleteMeal(id);
+    public Meal deleteMeal(final @PathVariable("id") Long id) {
+        return mealService.deleteMeal(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateMeal(final @PathVariable("id") Long id, final @RequestBody MealRequest meal) {
-        mealService.updateMeal(id, meal);
+    public Meal updateMeal(final @PathVariable("id") Long id, final @RequestBody MealRequest meal) {
+        return mealService.updateMeal(id, meal);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)
-    public void createMeal(final @RequestBody MealRequest meal) {
-        mealService.createMeal(meal);
+    public Meal createMeal(final @RequestBody MealRequest meal) {
+        return mealService.createMeal(meal);
     }
 
     @RequestMapping("/{id}")

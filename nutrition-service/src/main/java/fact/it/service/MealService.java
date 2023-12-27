@@ -37,13 +37,14 @@ public class MealService {
      * Creates a new meal.
      * @param mealRequest - the meal we want to create.
      */
-    public void createMeal(final MealRequest mealRequest) {
+    public Meal createMeal(final MealRequest mealRequest) {
         final Meal meal = Meal.builder()
                 .date(mealRequest.getDate())
                 .name(mealRequest.getName())
                 .totalCalories(mealRequest.getTotalCalories())
                 .build();
         mealRepository.save(meal);
+        return meal;
     }
 
     /**
@@ -51,7 +52,7 @@ public class MealService {
      * @param id - the ID of the meal we want to update.
      * @param updatedMeal - the newly updated meal.
      */
-    public void updateMeal(final Long id, final MealRequest updatedMeal) {
+    public Meal updateMeal(final Long id, final MealRequest updatedMeal) {
         final Optional<Meal> meal = mealRepository.findById(id);
 
         if (meal.isPresent()) {
@@ -61,16 +62,19 @@ public class MealService {
             toUpdate.setTotalCalories(updatedMeal.getTotalCalories());
 
             mealRepository.save(toUpdate);
+            return toUpdate;
         }
+        return null;
     }
 
     /**
      * Deletes a meal.
      * @param id - the ID of the meal we'd like to delete.
      */
-    public void deleteMeal(final Long id) {
+    public Meal deleteMeal(final Long id) {
         final Optional<Meal> res = mealRepository.findById(id);
         res.ifPresent(mealRepository::delete);
+        return res.orElse(null);
     }
 
     /**
