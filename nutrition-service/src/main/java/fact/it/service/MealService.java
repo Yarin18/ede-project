@@ -55,7 +55,7 @@ public class MealService {
         final Optional<Meal> meal = mealRepository.findById(id);
 
         if (meal.isPresent()) {
-            Meal toUpdate = meal.get();
+            final Meal toUpdate = meal.get();
             toUpdate.setDate(updatedMeal.getDate());
             toUpdate.setName(updatedMeal.getName());
             toUpdate.setTotalCalories(updatedMeal.getTotalCalories());
