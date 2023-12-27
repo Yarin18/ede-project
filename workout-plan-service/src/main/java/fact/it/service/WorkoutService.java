@@ -42,7 +42,7 @@ public class WorkoutService {
      * @param id - The id of the workout we want to edit.
      * @param updatedWorkoutRequest - the request we're passing along to update.
      */
-    public void editWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
+    public void updateWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
         final Optional<Workout> existingWorkout = workoutRepository.findById(id);
         if (existingWorkout.isPresent()) {
             final Workout res = existingWorkout.get();

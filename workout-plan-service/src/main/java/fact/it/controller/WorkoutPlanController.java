@@ -31,14 +31,14 @@ public class WorkoutPlanController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void editWorkout(
-            @PathVariable("id") String id,
-            @RequestBody WorkoutRequest updatedWorkoutRequest) {
-        workoutService.editWorkout(id, updatedWorkoutRequest);
+            @PathVariable("id") final String id,
+            @RequestBody final WorkoutRequest updatedWorkoutRequest) {
+        workoutService.updateWorkout(id, updatedWorkoutRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteWorkout(@PathVariable("id") String id) {
+    public void deleteWorkout(@PathVariable("id") final String id) {
         workoutService.deleteWorkout(id);
     }
 }
