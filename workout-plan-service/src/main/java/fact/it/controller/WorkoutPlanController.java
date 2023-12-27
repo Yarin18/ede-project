@@ -27,4 +27,18 @@ public class WorkoutPlanController {
     public List<WorkoutResponse> getAllWorkouts() {
         return workoutService.getAllWorkouts();
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void editWorkout(
+            @PathVariable("id") String id,
+            @RequestBody WorkoutRequest updatedWorkoutRequest) {
+        workoutService.editWorkout(id, updatedWorkoutRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteWorkout(@PathVariable("id") String id) {
+        workoutService.deleteWorkout(id);
+    }
 }
