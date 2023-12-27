@@ -62,7 +62,7 @@ services:
     ports:
       - "8084:8084"
     environment:
-      MONGODB_PORT: 27017
+      MONGODB_PORT: 27018
       MONGODB_HOST: mongo-user
       
   api-gateway-service:
