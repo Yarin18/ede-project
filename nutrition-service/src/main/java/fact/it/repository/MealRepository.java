@@ -1,6 +1,6 @@
-package repository;
+package fact.it.repository;
 
-import dto.Meal;
+import fact.it.dto.Meal;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

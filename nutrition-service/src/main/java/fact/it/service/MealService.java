@@ -1,11 +1,11 @@
-package service;
+package fact.it.service;
 
-import dto.Meal;
-import dto.MealRequest;
-import dto.MealResponse;
+import fact.it.dto.Meal;
+import fact.it.dto.MealRequest;
+import fact.it.dto.MealResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import repository.MealRepository;
+import fact.it.repository.MealRepository;
 
 import java.util.List;
 import java.util.Optional;

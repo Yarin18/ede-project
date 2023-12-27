@@ -1,4 +1,4 @@
-package dto;
+package fact.it.dto;
 
 
 import lombok.AllArgsConstructor;
