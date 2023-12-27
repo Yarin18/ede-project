@@ -1,0 +1,22 @@
+services:
+ mongo-workout-plan:
+  image: mongo:latest
+  ports:
+    - 27017:27017
+  volumes:
+    - mongodb_product_data:/data/db
+    
+ workout-plan-service:
+  depends_on:
+    - workout-plan
+  image: yarin123/workout-plan-service
+  ports:
+    - 8080:8080
+  links:
+    - mongo-products
+  environment:
+   MONGODB_PORT: 27017
+   MONGODB_HOST: mongo-workout-plan
+   
+volumes:
+ mongodb_product_data:
