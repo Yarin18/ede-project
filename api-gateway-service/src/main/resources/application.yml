@@ -13,20 +13,20 @@ spring:
     gateway:
       routes:
         - id: workout-plan-service
-          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/workouts
+            - Path=ede/workout
           filters:
-            - SetPath=/api/order
+            - SetPath=/api/workout/all
         - id: nutrition-service
           uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/nutrition
+            - Path=ede/nutrition
           filters:
-            - SetPath=/api/nutrition
+            - SetPath=/api/nutrition/**
         - id: user-service
           uri: http://${USER_SERVICE_BASEURL:localhost:8080}
           predicates:
-            - Path=/users
+            - Path=ede/user
           filters:
-            - SetPath=/api/user
+            - SetPath=/api/user/**
