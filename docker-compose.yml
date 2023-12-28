@@ -2,18 +2,18 @@ networks:
   connection-network:
     driver: bridge
 
-#volumes:
-#  mongodb_workout_plan_data:
-#  mysql_nutrition_data:
-#  mongodb_user_data:
+volumes:
+  mongodb_workout_plan_data:
+  mysql_nutrition_data:
+  mongodb_user_data:
   
 services:
   mongo-workout-plan:
     image: mongo:latest
     ports:
       - "27017:27017"
-#    volumes:
-#      - mongodb_workout_plan_data:/data/db
+    volumes:
+      - mongodb_workout_plan_data:/data/db
     networks:
       - connection-network
 
@@ -21,15 +21,15 @@ services:
     image: mongo:latest
     ports:
       - "27018:27017"
-#    volumes:
-#      - mongodb_user_data:/data/db
+    volumes:
+      - mongodb_user_data:/data/db
     networks:
       - connection-network
       
   mysql-nutrition:
     image: mysql:latest
-#    volumes:
-#      - mysql_nutrition_data:/var/lib/mysql
+    volumes:
+      - mysql_nutrition_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: nutridb
       MYSQL_ROOT_PASSWORD: 1234
