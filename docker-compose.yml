@@ -1,3 +1,12 @@
+networks:
+  connection-network:
+    driver: bridge
+
+volumes:
+  mongodb_workout_plan_data:
+  mysql_nutrition_data:
+  mongodb_user_data:
+  
 services:
   mongo-workout-plan:
     image: mongo:latest
@@ -5,19 +14,8 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_workout_plan_data:/data/db
-
-  mysql-nutrition:
-    image: mysql:latest
-    volumes:
-      - mysql_nutrition_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+    networks:
+      - connection-network
 
   mongo-user:
     image: mongo:latest
@@ -25,12 +23,41 @@ services:
       - "27018:27017"
     volumes:
       - mongodb_user_data:/data/db
+    networks:
+      - connection-network
+      
+  mysql-nutrition:
+    image: mysql:latest
+    volumes:
+      - mysql_nutrition_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    networks:
+      - connection-network
 
+  
+  nutrition-service:
+    restart: on-failure
+    depends_on:
+      - mysql-nutrition
+      - user-service
+    ports:
+      - "8082:8082"
+    image: yarin123/nutrition-service
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: 1234
+      MYSQL_DB_HOST: mysql-nutritionaaa
+      MYSQL_DB_PORT: 3306
+      MYSQL_DATABASE: nutridb
+
+    networks:
+      - connection-network
+  
   workout-plan-service:
     depends_on:
-      - mongo-workout-plan
-      - user-service
-    links:
       - mongo-workout-plan
       - user-service
     image: yarin123/workout-plan-service
@@ -39,29 +66,11 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-workout-plan
-
-  nutrition-service:
-    restart: on-failure
-    depends_on:
-      - mysql-nutrition
-      - user-service
-    ports:
-      - "8082:8082"
-    links:
-      - mysql-nutrition
-      - user-service
-    image: yarin123/nutrition-service
-    environment:
-      MYSQL_DB_USERNAME: root
-      MYSQL_DB_PASSWORD: 1234
-      MYSQL_DB_HOST: mysql-nutrition
-      MYSQL_DB_PORT: 3306
-      MYSQL_DATABASE: mysql-nutrition
+    networks:
+      - connection-network
 
   user-service:
     depends_on:
-      - mongo-user
-    links:
       - mongo-user
     image: yarin123/user-service
     ports:
@@ -69,7 +78,17 @@ services:
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-user
-      
+    networks:
+      - connection-network
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - connection-network
+
   api-gateway-service:
     depends_on:
       - workout-plan-service
@@ -82,9 +101,6 @@ services:
       WORKOUT_PLAN_SERVICE_BASEURL: workout-plan-service:8081
       NUTRITION_SERVICE_BASEURL: nutrition-service:8082
       USER_SERVICE_BASEURL: user-service:8084
+    networks:
+      - connection-network
 
-
-volumes:
-  mongodb_workout_plan_data:
-  mysql_nutrition_data:
-  mongodb_user_data:
