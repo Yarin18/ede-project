@@ -75,7 +75,7 @@ services:
       - mongo-user
     image: yarin123/user-service
     ports:
-      - "8084:8084"
+      - "8083:8083"
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-user
@@ -89,7 +89,7 @@ services:
       - user-service
     image: yarin123/api-gateway-service
     ports:
-      - "8083:8083"
+      - "8084:8084"
     environment:
       WORKOUT_PLAN_SERVICE_BASEURL: workout-plan-service:8080
       NUTRITION_SERVICE_BASEURL: nutrition-service:8080
