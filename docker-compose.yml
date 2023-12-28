@@ -15,6 +15,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
   mongo-user:
     image: mongo:latest
     ports:
@@ -51,7 +57,7 @@ services:
       MYSQL_DB_PASSWORD: 1234
       MYSQL_DB_HOST: mysql-nutrition
       MYSQL_DB_PORT: 3306
-      MYSQL_DATABASE: nutritiondb
+      MYSQL_DATABASE: mysql-nutrition
 
   user-service:
     depends_on:
@@ -77,6 +83,7 @@ services:
       WORKOUT_PLAN_SERVICE_BASEURL: http://workout-plan-service:8081
       NUTRITION_SERVICE_BASEURL: http://nutrition-service:8082
       USER_SERVICE_BASEURL: http://user-service:8084
+
 
 volumes:
   mongodb_workout_plan_data:
