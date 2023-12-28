@@ -41,6 +41,7 @@ services:
       MONGODB_HOST: mongo-workout-plan
 
   nutrition-service:
+    restart: on-failure
     depends_on:
       - mysql-nutrition
       - user-service
