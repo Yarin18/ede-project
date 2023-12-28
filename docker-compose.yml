@@ -45,7 +45,7 @@ services:
       - mysql-nutrition
       - user-service
     ports:
-      - "8082:8082"
+      - "8082:8080"
     image: yarin123/nutrition-service
     environment:
       MYSQL_DB_USERNAME: root
@@ -63,7 +63,7 @@ services:
       - user-service
     image: yarin123/workout-plan-service
     ports:
-      - "8081:8081"
+      - "8081:8080"
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-workout-plan
@@ -75,7 +75,7 @@ services:
       - mongo-user
     image: yarin123/user-service
     ports:
-      - "8083:8083"
+      - "8083:8080"
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-user
