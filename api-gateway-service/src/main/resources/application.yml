@@ -13,7 +13,7 @@ spring:
     gateway:
       routes:
         - id: workout-plan-service
-          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8080}
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=ede/workout
           filters:

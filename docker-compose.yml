@@ -82,14 +82,6 @@ services:
     networks:
       - connection-network
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - connection-network
-
   api-gateway-service:
     depends_on:
       - workout-plan-service
