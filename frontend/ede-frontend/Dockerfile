@@ -7,4 +7,4 @@ RUN npm run build --prod
 
 # Stage 2: Create Nginx container and copy built artifacts
 FROM nginx:alpine
-COPY --from=builder /app/dist/edeproject /usr/share/nginx/html
+COPY --from=builder /app/dist/ede-frontend /usr/share/nginx/html
