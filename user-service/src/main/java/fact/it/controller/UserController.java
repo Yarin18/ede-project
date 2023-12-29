@@ -2,7 +2,7 @@ package fact.it.controller;
 
 import fact.it.dto.UserRequest;
 import fact.it.dto.UserResponse;
-import fact.it.mq.JmsProducer;
+import fact.it.mq.MessageSender;
 import fact.it.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private JmsProducer jmsProducer;
+    private MessageSender messageSender;
 
     private final UserService userService;
 
@@ -30,21 +30,21 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public void createUser(final @RequestBody UserRequest userRequest) {
-        jmsProducer.sendMessage(userRequest, UserTopic.CREATE);
+        messageSender.sendMessage(userRequest, UserTopic.CREATE);
         userService.createUser(userRequest);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(final @PathVariable("id") String id) {
-        jmsProducer.sendMessage(userService.getById(id), UserTopic.DELETE);
+        messageSender.sendMessage(userService.getById(id), UserTopic.DELETE);
         userService.deleteUser(id);
     }
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateUser(final @PathVariable("id") String id, final @RequestBody UserRequest userRequest) {
-        jmsProducer.sendMessage(userRequest, UserTopic.UPDATE);
+        messageSender.sendMessage(userRequest, UserTopic.UPDATE);
         userService.updateUser(id, userRequest);
     }
 
