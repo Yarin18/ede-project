@@ -11,7 +11,7 @@ services:
   angular-frontend:  
     image: yarin123/ede-frontend:latest  
     ports:
-      - "8085:8080" 
+      - "8085:80" 
     networks:
       - connection-network
       
