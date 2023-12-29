@@ -117,7 +117,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build Angular project
-        working-directory: ./ede-frontend
+        working-directory: ./ede-frontend/ede-frontend
         run: |
           npm install -g @angular/cli    
           npm install                    
