@@ -46,7 +46,7 @@ services:
       - connection-network
 
   activemq:
-    image: vromero/activemq-artemis
+    image: apache/activemq-artemis:latest
     ports:
       - "61616:61616"  
       - "8161:8161"   
