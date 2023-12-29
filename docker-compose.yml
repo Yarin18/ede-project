@@ -8,6 +8,13 @@ volumes:
   mongodb_user_data:
   
 services:
+  angular-frontend:  
+    image: yarin123/ede-frontend:latest  
+    ports:
+      - "8085:8080" 
+    networks:
+      - connection-network
+      
   mongo-workout-plan:
     image: mongo:latest
     ports:
