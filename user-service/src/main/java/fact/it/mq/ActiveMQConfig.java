@@ -13,7 +13,7 @@ public class ActiveMQConfig {
     @Bean
     public ConnectionFactory connectionFactory(){
         ActiveMQConnectionFactory activeMQConnectionFactory  = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL("tcp://activemq:61616");
+        activeMQConnectionFactory.setBrokerURL("tcp://activemq:61616?jms.username=admin&jms.password=admin");
         return  activeMQConnectionFactory;
     }
 
