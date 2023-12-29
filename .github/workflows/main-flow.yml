@@ -109,26 +109,26 @@ jobs:
 
         - name: Upload container to Docker Hub with Push
           run: docker push ${{ secrets.DOCKER_USER }}/api-gateway-service:latest
-  ede_frontend:
-    runs-on: ubuntu-latest
-    name: Build and deliver ede-frontend container
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+  # ede_frontend:
+  #   runs-on: ubuntu-latest
+  #   name: Build and deliver ede-frontend container
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v3
 
-      - name: Build Angular project
-        working-directory: ./frontend/ede-frontend
-        run: |
-          npm install -g @angular/cli    
-          npm install                    
-          ng build 
+  #     - name: Build Angular project
+  #       working-directory: ./frontend/ede-frontend
+  #       run: |
+  #         npm install -g @angular/cli    
+  #         npm install                    
+  #         ng build 
 
-      - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: Docker login
+  #       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/ede-frontend:latest ./frontend/ede-frontend
+  #     - name: Docker Build
+  #       run: docker build -t ${{ secrets.DOCKER_USER }}/ede-frontend:latest ./frontend/ede-frontend
 
-      - name: Upload container to Docker Hub with Push
-        run: docker push ${{ secrets.DOCKER_USER }}/ede-frontend:latest
+  #     - name: Upload container to Docker Hub with Push
+  #       run: docker push ${{ secrets.DOCKER_USER }}/ede-frontend:latest
 
