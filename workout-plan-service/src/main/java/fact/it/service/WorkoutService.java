@@ -22,6 +22,7 @@ public class WorkoutService {
      */
     public void createWorkout(final WorkoutRequest workoutRequest) {
         final Workout workout = Workout.builder()
+                .userId(workoutRequest.getUserId())
                 .name(workoutRequest.getName())
                 .date(workoutRequest.getDate())
                 .minutes(workoutRequest.getMinutes())
@@ -46,6 +47,7 @@ public class WorkoutService {
         final Optional<Workout> existingWorkout = workoutRepository.findById(id);
         if (existingWorkout.isPresent()) {
             final Workout res = existingWorkout.get();
+            res.setUserId(updatedWorkoutRequest.getUserId());
             res.setName(updatedWorkoutRequest.getName());
             res.setDate(updatedWorkoutRequest.getDate());
             res.setMinutes(updatedWorkoutRequest.getMinutes());
@@ -70,6 +72,7 @@ public class WorkoutService {
     private WorkoutResponse mapToWorkoutResponse(final Workout workout) {
         return WorkoutResponse.builder()
                 .id(workout.getId())
+                .userId(workout.getUserId())
                 .name(workout.getName())
                 .date(workout.getDate())
                 .minutes(workout.getMinutes())

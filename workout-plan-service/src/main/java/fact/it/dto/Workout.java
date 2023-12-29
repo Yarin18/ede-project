@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Workout {
 
-    private String id, name;
+    private String id, name, userId;
     private Date date;
     private int minutes;
     private boolean isCardioWorkout;

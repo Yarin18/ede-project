@@ -39,6 +39,7 @@ public class MealService {
      */
     public void createMeal(final MealRequest mealRequest) {
         final Meal meal = Meal.builder()
+                .userId(mealRequest.getUserId())
                 .date(mealRequest.getDate())
                 .name(mealRequest.getName())
                 .totalCalories(mealRequest.getTotalCalories())
@@ -56,6 +57,7 @@ public class MealService {
 
         if (meal.isPresent()) {
             final Meal toUpdate = meal.get();
+            toUpdate.setUserId(updatedMeal.getUserId());
             toUpdate.setDate(updatedMeal.getDate());
             toUpdate.setName(updatedMeal.getName());
             toUpdate.setTotalCalories(updatedMeal.getTotalCalories());
@@ -81,6 +83,7 @@ public class MealService {
     private MealResponse mapToMealResponse(final Meal meal) {
             return MealResponse.builder()
                     .id(meal.getId())
+                    .userId(meal.getUserId())
                     .name(meal.getName())
                     .date(meal.getDate())
                     .totalCalories(meal.getTotalCalories())

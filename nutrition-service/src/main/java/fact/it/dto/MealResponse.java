@@ -15,6 +15,6 @@ import java.util.Date;
 public class MealResponse {
     private Long id;
     private Date date;
-    private String name;
+    private String name, userId;
     private int totalCalories;
 }

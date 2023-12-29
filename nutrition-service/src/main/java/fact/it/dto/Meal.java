@@ -20,7 +20,7 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date date;
-    private String name;
+    private String name, userId;
     private int totalCalories;
 
 }
