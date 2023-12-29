@@ -2,7 +2,7 @@ FROM node AS builder
 
 WORKDIR /app
 
-COPY frontend/ede-frontend/ /app
+COPY ./ /app
 
 RUN npm install
 RUN npm run build --prod
