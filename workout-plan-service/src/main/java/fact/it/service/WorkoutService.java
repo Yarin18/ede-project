@@ -66,7 +66,7 @@ public class WorkoutService {
 
     /**
      * Maps a Workout Object to a WorkoutResponse object.
-     * @param workout - the workout we're going to map.
+     * @param workout - the workout we are going to map from.
      * @return a WorkoutResponse object based of the workout object we passed in.
      */
     private WorkoutResponse mapToWorkoutResponse(final Workout workout) {
