@@ -17,4 +17,9 @@ spring:
           predicates:
             - Path=/ede/workout
           filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedTokens: 1
             - SetPath=/api/workout/all
