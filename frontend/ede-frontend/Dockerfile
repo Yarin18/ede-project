@@ -1,5 +1,4 @@
 FROM node AS builder
-EXPOSE 8085
 WORKDIR /app
 
 COPY ./ /app
