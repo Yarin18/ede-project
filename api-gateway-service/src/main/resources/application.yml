@@ -3,9 +3,9 @@
 
 logging:
   level:
-    root: INFO
+    root: TRACE
     org.springframework.cloud.gateway: TRACE
-    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
     reactor.netty: TRACE
 
 spring:
