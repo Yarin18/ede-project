@@ -15,6 +15,7 @@ spring:
         - id: workout-plan-service
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
+            - Method=GET
             - Path=/workout
           filters:
 #            - name: RequestRateLimiter
