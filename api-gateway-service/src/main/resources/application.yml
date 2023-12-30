@@ -13,14 +13,14 @@ spring:
     gateway:
       routes:
         - id: workout-plan-service-a
-          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          uri: http://workout-plan-service:8081
           predicates:
             - Method=GET
             - Path=/workout
           filters:
             - SetPath=/api/workout
         - id: workout-plan-service-b
-          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          uri: http://workout-plan-service:8081
           predicates:
             - Method=GET
             - Path=/workout/{id}
