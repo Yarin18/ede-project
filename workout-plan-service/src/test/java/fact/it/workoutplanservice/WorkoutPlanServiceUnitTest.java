@@ -9,12 +9,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,6 +36,7 @@ public class WorkoutPlanServiceUnitTest {
     @Test
     public void testCreateWorkout() {
         final WorkoutRequest workoutRequest = new WorkoutRequest();
+        workoutRequest.setId("1");
         workoutRequest.setCardioWorkout(true);
         workoutRequest.setDate(Date.from(Instant.now()));
         workoutRequest.setName("Going for a run");
@@ -43,6 +47,55 @@ public class WorkoutPlanServiceUnitTest {
 
         verify(workoutRepository, times(1)).save(any(Workout.class));
     }
+
+    @Test
+    public void testDeleteWorkout() {
+        final Workout workout = Workout.builder()
+                .id("1")
+                .userId("user123")
+                .isCardioWorkout(true)
+                .name("Morning Jog")
+                .minutes(20)
+                .date(new Date())
+                .build();
+
+        when(workoutRepository.findById(workout.getId())).thenReturn(Optional.of(workout));
+
+        workoutService.deleteWorkout(workout.getId());
+
+        verify(workoutRepository, Mockito.times(1)).deleteById(workout.getId());
+    }
+
+    @Test
+    public void testUpdateWorkout() {
+        final Workout workout = Workout.builder()
+                .id("1")
+                .userId("user123")
+                .isCardioWorkout(true)
+                .name("Morning Jog")
+                .minutes(20)
+                .date(new Date())
+                .build();
+
+        when(workoutRepository.findById(workout.getId())).thenReturn(Optional.of(workout));
+
+        final String updatedName = "Evening Run";
+        final int updatedMinutes = 35;
+
+        final WorkoutRequest updatedWorkout = WorkoutRequest.builder()
+                .id(workout.getId())
+                .userId(workout.getUserId())
+                .isCardioWorkout(true)
+                .name(updatedName)
+                .minutes(updatedMinutes)
+                .date(workout.getDate())
+                .build();
+
+        final Workout updated = workoutService.updateWorkout(workout.getId(), updatedWorkout);
+
+        verify(workoutRepository, Mockito.times(1)).save(updated);
+    }
+
 
     @Test
     public void testGetAllWorkouts() {

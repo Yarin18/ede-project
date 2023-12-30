@@ -20,8 +20,9 @@ public class WorkoutService {
      * Creates a new workout.
      * @param workoutRequest - the request we base our newly created workout of.
      */
-    public void createWorkout(final WorkoutRequest workoutRequest) {
+    public Workout createWorkout(final WorkoutRequest workoutRequest) {
         final Workout workout = Workout.builder()
+                .id(workoutRequest.getId())
                 .userId(workoutRequest.getUserId())
                 .name(workoutRequest.getName())
                 .date(workoutRequest.getDate())
@@ -29,6 +30,7 @@ public class WorkoutService {
                 .isCardioWorkout(workoutRequest.isCardioWorkout())
                 .build();
         workoutRepository.save(workout);
+        return workout;
     }
 
     /**
@@ -36,6 +38,14 @@ public class WorkoutService {
      */
     public List<WorkoutResponse> getAllWorkouts() {
         return workoutRepository.findAll().stream().map(this::mapToWorkoutResponse).toList();
+    }
+
+    /**
+     * @param id the ID of the workout we want.
+     * @return a WorkoutResponse object.
+     */
+    public WorkoutResponse getWorkoutById(final String id) {
+        return workoutRepository.findById(id).map(this::mapToWorkoutResponse).orElse(null);
     }
 
     /**
@@ -52,7 +62,7 @@ public class WorkoutService {
      * @param id - The id of the workout we want to edit.
      * @param updatedWorkoutRequest - the request we're passing along to update.
      */
-    public void updateWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
+    public Workout updateWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
         final Optional<Workout> existingWorkout = workoutRepository.findById(id);
         if (existingWorkout.isPresent()) {
             final Workout res = existingWorkout.get();
@@ -62,7 +72,9 @@ public class WorkoutService {
             res.setMinutes(updatedWorkoutRequest.getMinutes());
             res.setCardioWorkout(updatedWorkoutRequest.isCardioWorkout());
             workoutRepository.save(res);
+            return res;
         }
+        return null;
     }
 
     /**
@@ -70,7 +82,9 @@ public class WorkoutService {
      */
     public void deleteWorkout(final String id) {
         final Optional<Workout> toDelete = workoutRepository.findById(id);
-        toDelete.ifPresent(workoutRepository::delete);
+        if (toDelete.isPresent()) {
+            workoutRepository.deleteById(id);
+        }
     }
 
     /**

@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkoutRequest implements Nameable {
 
-    private String name, userId;
+    private String name, userId, id;
     private Date date;
     private int minutes;
     private boolean isCardioWorkout;
