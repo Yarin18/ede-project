@@ -8,13 +8,7 @@ volumes:
   mongodb_user_data:
   
 services:
-#  angular-frontend:  
-#    image: yarin123/ede-frontend:latest  
-#    ports:
-#      - "8085:80" 
-#    networks:
-#      - connection-network
-      
+    
   mongo-workout-plan:
     image: mongo:latest
     ports:
@@ -48,8 +42,8 @@ services:
   activemq:
     image: apache/activemq-artemis:latest
     environment:
-     - ARTEMIS_USERNAME=admin
-     - ARTEMIS_PASSWORD=admin
+     - ARTEMIS_USERNAME=artemis
+     - ARTEMIS_PASSWORD=artemis
     ports:
       - "61616:61616"  
       - "8161:8161"   
