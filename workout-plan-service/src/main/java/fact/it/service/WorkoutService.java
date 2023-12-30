@@ -39,6 +39,15 @@ public class WorkoutService {
     }
 
     /**
+     * Returns a list of workout responses based of the passed in userid.
+     * @param userId - the UserId we want to get the workouts of.
+     * @return a List<WorkoutResponse>.
+     */
+    public List<WorkoutResponse> getAllWorkoutsByUserId(final String userId) {
+        return workoutRepository.findByUserId(userId).stream().map(this::mapToWorkoutResponse).toList();
+    }
+
+    /**
      * Edits a workout
      * @param id - The id of the workout we want to edit.
      * @param updatedWorkoutRequest - the request we're passing along to update.
