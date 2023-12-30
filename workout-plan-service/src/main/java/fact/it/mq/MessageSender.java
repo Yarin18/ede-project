@@ -18,13 +18,13 @@ public class MessageSender {
     private ObjectMapper objectMapper;
 
     public <T extends Nameable> void sendMessage(final T msg, final WorkoutPlanController.Topic topic) {
-        try {
-            String jsonString = objectMapper.writeValueAsString(msg);
-            jmsMessagingTemplate.convertAndSend(topic.getName(), jsonString);
-            System.out.println("Sent message!");
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String jsonString = objectMapper.writeValueAsString(msg);
+//            jmsMessagingTemplate.convertAndSend(topic.getName(), jsonString);
+//            System.out.println("Sent message!");
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
