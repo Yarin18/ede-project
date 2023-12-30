@@ -9,14 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse implements Nameable {
+public class UserResponse {
 
     private String id, name, password, email;
     // goal of hitting an x amount of workouts per week
     private int workoutGoal;
-
-    @Override
-    public String getUserName() {
-        return this.name;
-    }
 }

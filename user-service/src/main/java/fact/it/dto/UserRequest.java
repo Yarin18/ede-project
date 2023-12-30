@@ -9,14 +9,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRequest implements Nameable {
+public class UserRequest {
 
     private String name, password, email;
     // goal of hitting an x amount of workouts per week
     private int workoutGoal;
-
-    @Override
-    public String getUserName() {
-        return this.name;
-    }
 }
