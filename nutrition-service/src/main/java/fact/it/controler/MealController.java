@@ -1,12 +1,11 @@
 package fact.it.controler;
 
-import fact.it.dto.Meal;
 import fact.it.dto.MealRequest;
 import fact.it.dto.MealResponse;
+import fact.it.service.MealService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import fact.it.service.MealService;
 
 import java.util.List;
 

@@ -14,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -126,7 +125,7 @@ public class WorkoutPlanServiceUnitTest {
     public void testGetAllWorkoutByUserId() {
         final Date d1 = new Date();
         final Date d2 = Date.from(Instant.now().plus(50, ChronoUnit.HALF_DAYS));
-        Workout workout = new Workout();
+        final Workout workout = new Workout();
         workout.setId("1");
         workout.setName("Morning Run");
         workout.setUserId("user123");
@@ -134,7 +133,7 @@ public class WorkoutPlanServiceUnitTest {
         workout.setMinutes(30);
         workout.setCardioWorkout(true);
 
-        Workout workout2 = new Workout();
+        final Workout workout2 = new Workout();
         workout2.setId("2");
         workout2.setName("Weight Training");
         workout2.setUserId("user456");
@@ -142,7 +141,7 @@ public class WorkoutPlanServiceUnitTest {
         workout2.setMinutes(45);
         workout2.setCardioWorkout(false);
 
-        Workout workout3 = new Workout();
+        final Workout workout3 = new Workout();
         workout3.setId("3");
         workout3.setName("Cycling");
         workout3.setUserId("user789");
@@ -150,7 +149,7 @@ public class WorkoutPlanServiceUnitTest {
         workout3.setMinutes(60);
         workout3.setCardioWorkout(true);
 
-        Workout workout4 = new Workout();
+        final Workout workout4 = new Workout();
         workout4.setId("4");
         workout4.setName("Evening Weights");
         workout4.setUserId("user123");
