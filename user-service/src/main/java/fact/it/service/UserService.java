@@ -6,6 +6,7 @@ import fact.it.dto.UserResponse;
 import fact.it.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+
+    private final WebClient webClient;
 
     /**
      * Creates a new user.
