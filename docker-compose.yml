@@ -98,9 +98,9 @@ services:
     ports:
       - "8084:8084"
     environment:
-      WORKOUT_PLAN_SERVICE_BASEURL: workout-plan-service:8080
-      NUTRITION_SERVICE_BASEURL: nutrition-service:8080
-      USER_SERVICE_BASEURL: user-service:8080
+      WORKOUT_PLAN_SERVICE_BASEURL: workout-plan-service:8081
+      NUTRITION_SERVICE_BASEURL: nutrition-service:8082
+      USER_SERVICE_BASEURL: user-service:8083
     networks:
       - connection-network
 
