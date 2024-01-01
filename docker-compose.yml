@@ -96,7 +96,7 @@ services:
       - user-service
     image: yarin123/api-gateway-service
     ports:
-      - "8084:8080"
+      - "8084:8084"
     environment:
       WORKOUT_PLAN_SERVICE_BASEURL: workout-plan-service:8080
       NUTRITION_SERVICE_BASEURL: nutrition-service:8080
