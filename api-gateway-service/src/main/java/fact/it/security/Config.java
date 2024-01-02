@@ -19,7 +19,7 @@ public class Config {
                 .authorizeExchange(exchange ->
                         exchange
                                 .pathMatchers("/workout", "/nutrition", "/user")
-                                .authenticated()
+                                .permitAll()
                                 .anyExchange()
                                 .authenticated()
                 )
