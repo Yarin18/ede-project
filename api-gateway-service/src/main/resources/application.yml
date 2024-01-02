@@ -27,10 +27,39 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: workout-plan-service-a
+        # Get all workouts
+        - id: workout-plan-service-all
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=GET
             - Path=/workout
           filters:
             - SetPath=/api/workout/all
+
+        # Get workout by id
+        - id: workout-plan-service-get-id
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=GET
+            - Path=/workout/{id}
+          filters:
+            - SetPath=/api/workout/{id}
+
+        # Create workout
+        - id: workout-plan-service-create
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=POST
+            - /workout
+          filters:
+            - SetPath=/api/workout
+        # Update workout
+        - id: workout-plan-service-update
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=PUT
+            - /workout
+          filters:
+            - SetPath=/api/workout
+
+

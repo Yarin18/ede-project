@@ -11,15 +11,10 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class WorkoutResponse implements Nameable {
+public class WorkoutResponse {
 
     private String id, name, userId;
     private Date date;
     private int minutes;
     private boolean isCardioWorkout;
-
-    @Override
-    public String getUserName() {
-        return this.name;
-    }
 }

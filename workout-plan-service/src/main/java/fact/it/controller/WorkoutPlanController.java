@@ -42,21 +42,4 @@ public class WorkoutPlanController {
         workoutService.deleteWorkout(id);
     }
 
-    public enum Topic {
-
-        CREATE("create-workout"),
-        DELETE("delete-user"),
-        UPDATE("update-user");
-
-        private final String name;
-
-        Topic(final String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-    }
-
 }
