@@ -28,7 +28,7 @@ services:
   mongo-user:
     image: mongo:latest
     ports:
-      - "27018:27017"
+      - "27018:27018"
     volumes:
       - mongodb_user_data:/data/db
     networks:
@@ -79,7 +79,6 @@ services:
   user-service:
     depends_on:
       - mongo-user
-#      - activemq
     image: yarin123/user-service
     ports:
       - "8083:8083"
