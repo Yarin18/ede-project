@@ -44,13 +44,12 @@ spring:
             - Path=/workout/{id}
           filters:
             - SetPath=/api/workout/{id}
-
         # Create workout
         - id: workout-plan-service-create
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=POST
-            - /workout
+            - Path=/workout
           filters:
             - SetPath=/api/workout
         # Update workout
@@ -58,7 +57,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=PUT
-            - /workout
+            - Path=/workout
           filters:
             - SetPath=/api/workout
 
