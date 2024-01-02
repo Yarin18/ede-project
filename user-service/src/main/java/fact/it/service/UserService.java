@@ -76,70 +76,74 @@ public class UserService {
         return userRepository.findAll().stream().map(this::mapToUserResponse).toList();
     }
 
-    public void createWorkout(final WorkoutRequest workoutRequest) {
-        webClient.post()
-                .uri("http://localhost:8081/api/workout")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(workoutRequest), WorkoutResponse.class)
-                .retrieve()
-                .bodyToMono(WorkoutResponse.class)
-                .subscribe(
-                        createdWorkout -> {
-                            System.out.println("Successfully created a workout!");
-                        },
-                        error -> {
-                            System.out.println("Error creating a workout! " + error.getMessage());
-                        }
-                );
-    }
-
-    /**
-     * Creates a MealRequest for a user.
-     *
-     * @param mealRequest the meal request we're creating.
-     */
-    public void createMeal(final MealRequest mealRequest) {
-        webClient.post()
-                .uri("http://localhost:8082/api/meal")
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .body(Mono.just(mealRequest), MealResponse.class)
-                .retrieve()
-                .bodyToMono(MealResponse.class)
-                .subscribe(
-                        createdWorkout -> {
-                            System.out.println("Successfully created a meal!");
-                        },
-                        error -> {
-                            System.out.println("Error creating a meal! " + error.getMessage());
-                        }
-                );
-    }
-
-    /**
-     * Returns all workouts from a user.
-     * @param userId - The ID of the user.
-     *
-     * @return List<WorkoutRequest>
-     */
-    public Flux<WorkoutResponse> getWorkoutsFromUser(final String userId) {
-        return webClient.get()
-                .uri("http://localhost:8081/api/workout/all")
-                .retrieve()
-                .bodyToFlux(WorkoutResponse.class).filter(f -> f.getUserId().equals(userId));
-    }
-
-    /**
-     * Returns all meals from a user.
-     * @param userId - The ID of the user.
-     *
-     * @return List<MealRequest>
-     */
-    public Flux<MealResponse> getMealsFromUser(final String userId) {
-        return webClient.get()
-                .uri("http://localhost:8082/api/meal/all")
-                .retrieve()
-                .bodyToFlux(MealResponse.class).filter(f -> f.getUserId().equals(userId));
-    }
+//    /**
+//     * Creates a workout for a user based of the request.
+//     * @param workoutRequest - The workout request.
+//     */
+//    public void createWorkout(final WorkoutRequest workoutRequest) {
+//        webClient.post()
+//                .uri("http://localhost:8081/api/workout")
+//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+//                .body(Mono.just(workoutRequest), WorkoutResponse.class)
+//                .retrieve()
+//                .bodyToMono(WorkoutResponse.class)
+//                .subscribe(
+//                        createdWorkout -> {
+//                            System.out.println("Successfully created a workout!");
+//                        },
+//                        error -> {
+//                            System.out.println("Error creating a workout! " + error.getMessage());
+//                        }
+//                );
+//    }
+//
+//    /**
+//     * Creates a MealRequest for a user.
+//     *
+//     * @param mealRequest the meal request we're creating.
+//     */
+//    public void createMeal(final MealRequest mealRequest) {
+//        webClient.post()
+//                .uri("http://localhost:8082/api/meal")
+//                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+//                .body(Mono.just(mealRequest), MealResponse.class)
+//                .retrieve()
+//                .bodyToMono(MealResponse.class)
+//                .subscribe(
+//                        createdWorkout -> {
+//                            System.out.println("Successfully created a meal!");
+//                        },
+//                        error -> {
+//                            System.out.println("Error creating a meal! " + error.getMessage());
+//                        }
+//                );
+//    }
+//
+//    /**
+//     * Returns all workouts from a user.
+//     * @param userId - The ID of the user.
+//     *
+//     * @return List<WorkoutRequest>
+//     */
+//    public Flux<WorkoutResponse> getWorkoutsFromUser(final String userId) {
+//        return webClient.get()
+//                .uri("http://localhost:8081/api/workout/all")
+//                .retrieve()
+//                .bodyToFlux(WorkoutResponse.class).filter(f -> f.getUserId().equals(userId));
+//    }
+//
+//    /**
+//     * Returns all meals from a user.
+//     * @param userId - The ID of the user.
+//     *
+//     * @return List<MealRequest>
+//     */
+//    public Flux<MealResponse> getMealsFromUser(final String userId) {
+//        return webClient.get()
+//                .uri("http://localhost:8082/api/meal/all")
+//                .retrieve()
+//                .bodyToFlux(MealResponse.class).filter(f -> f.getUserId().equals(userId));
+//    }
 
 
         /**
