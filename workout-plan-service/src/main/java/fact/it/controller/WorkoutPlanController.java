@@ -22,6 +22,12 @@ public class WorkoutPlanController {
         workoutService.createWorkout(workoutRequest);
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public WorkoutResponse getWorkoutById(final @PathVariable("id") String id) {
+        return workoutService.getWorkoutById(id);
+    }
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<WorkoutResponse> getAllWorkouts() {

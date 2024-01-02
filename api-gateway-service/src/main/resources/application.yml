@@ -49,17 +49,25 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=POST
-            - Path=/workouts
+            - Path=/workouts/{id}
           filters:
-            - SetPath=/api/workout
+            - SetPath=/api/workout/{id}
         # Update workout
         - id: workout-plan-service-update
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=PUT
-            - Path=/workouts
+            - Path=/workouts/{id}
           filters:
-            - SetPath=/api/workout
+            - SetPath=/api/workout/{id}
+        # Delete workout
+        - id: workout-plan-service-delete
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=DELETE
+            - Path=/workouts/{id}
+          filters:
+            - SetPath=/api/workout/{id}
         # NUTRITION SERVICE
         # Get all meals
         - id: nutrition-service-all
@@ -90,9 +98,17 @@ spring:
           uri: http://${USER_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Method=PUT
-            - Path=/meals
+            - Path=/meals/{id}
           filters:
-            - SetPath=/api/meal
+            - SetPath=/api/meal/{id}
+        # Delete Meal
+        - id: nutrition-service-delete
+          uri: http://${USER_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Method=DELETE
+            - Path=/meals/{id}
+          filters:
+            - SetPath=/api/meal/{id}
         # USER SERVICE
         # Get all users
         - id: user-service-all
@@ -118,13 +134,21 @@ spring:
             - Path=/users
           filters:
             - SetPath=/api/user
-        # Update meal
+        # Update user
         - id: user-service-update
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Method=PUT
-            - Path=/users
+            - Path=/users/{id}
           filters:
-            - SetPath=/api/user
+            - SetPath=/api/user/{id}
+        # Delete user
+        - id: user-service-delete
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=DELETE
+            - Path=/users/{id}
+          filters:
+            - SetPath=/api/user/{id}
 
 
