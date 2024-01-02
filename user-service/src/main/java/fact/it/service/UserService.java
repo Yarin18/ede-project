@@ -19,7 +19,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final WebClient webClient;
+//    private final WebClient webClient;
 
     /**
      * Creates a new user.
