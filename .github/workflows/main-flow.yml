@@ -105,30 +105,9 @@ jobs:
           run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
 
         - name: Docker Build
-          run: docker build -t ${{ secrets.DOCKER_USER }}/api-gateway-service:latest ./api-gateway-service
+          run: docker build --build-arg GOOGLE_CLIENTID=${{ secrets.GOOGLE_CLIENTID }} --build-arg GOOGLE_CLIENTSECRET=${{ secrets.GOOGLE_CLIENTSECRET }} -t ${{ secrets.DOCKER_USER }}/api-gateway-service:latest ./api-gateway-service
 
         - name: Upload container to Docker Hub with Push
           run: docker push ${{ secrets.DOCKER_USER }}/api-gateway-service:latest
-  # ede_frontend:
-  #   runs-on: ubuntu-latest
-  #   name: Build and deliver ede-frontend container
-  #   steps:
-  #     - name: Check out repository
-  #       uses: actions/checkout@v3
 
-  #     - name: Build Angular project
-  #       working-directory: ./frontend/ede-frontend
-  #       run: |
-  #         npm install -g @angular/cli    
-  #         npm install                    
-  #         ng build 
-
-  #     - name: Docker login
-  #       run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-  #     - name: Docker Build
-  #       run: docker build -t ${{ secrets.DOCKER_USER }}/ede-frontend:latest ./frontend/ede-frontend
-
-  #     - name: Upload container to Docker Hub with Push
-  #       run: docker push ${{ secrets.DOCKER_USER }}/ede-frontend:latest
 
