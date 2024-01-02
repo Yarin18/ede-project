@@ -33,7 +33,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=GET
-            - Path=/workout
+            - Path=/workouts
           filters:
             - SetPath=/api/workout/all
         # Get workout by id
@@ -41,7 +41,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=GET
-            - Path=/workout/{id}
+            - Path=/workouts/{id}
           filters:
             - SetPath=/api/workout/{id}
         # Create workout
@@ -49,7 +49,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=POST
-            - Path=/workout
+            - Path=/workouts
           filters:
             - SetPath=/api/workout
         # Update workout
@@ -57,7 +57,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=PUT
-            - Path=/workout
+            - Path=/workouts
           filters:
             - SetPath=/api/workout
         # NUTRITION SERVICE
@@ -87,11 +87,44 @@ spring:
             - SetPath=/api/meal
         # Update meal
         - id: nutrition-service-update
-          uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
+          uri: http://${USER_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Method=PUT
             - Path=/meals
           filters:
             - SetPath=/api/meal
+        # USER SERVICE
+        # Get all users
+        - id: user-service-all
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=GET
+            - Path=/users
+          filters:
+            - SetPath=/api/user/all
+        # Get user by id
+        - id: user-service-get-id
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=GET
+            - Path=/users/{id}
+          filters:
+            - SetPath=/api/user/{id}
+        # Create user
+        - id: user-service-create
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=POST
+            - Path=/users
+          filters:
+            - SetPath=/api/user
+        # Update meal
+        - id: user-service-update
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=PUT
+            - Path=/users
+          filters:
+            - SetPath=/api/user
 
 
