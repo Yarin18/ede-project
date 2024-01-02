@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,6 +64,14 @@ public class UserService {
      */
     public UserResponse getById(final String id) {
         return mapToUserResponse(userRepository.findById(id).orElse(null));
+    }
+
+    /**
+     * Returns a list of all users.
+     * @return - a List of all users mapped to UserResponse objects.
+     */
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll().stream().map(this::mapToUserResponse).toList();
     }
 
     /**

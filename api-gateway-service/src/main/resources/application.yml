@@ -95,7 +95,7 @@ spring:
             - SetPath=/api/meal
         # Update meal
         - id: nutrition-service-update
-          uri: http://${USER_SERVICE_BASEURL:localhost:8082}
+          uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Method=PUT
             - Path=/meals/{id}
@@ -103,7 +103,7 @@ spring:
             - SetPath=/api/meal/{id}
         # Delete Meal
         - id: nutrition-service-delete
-          uri: http://${USER_SERVICE_BASEURL:localhost:8082}
+          uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Method=DELETE
             - Path=/meals/{id}

@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -15,6 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+
+    @GetMapping("all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserResponse> getAll() {
+        return userService.getAllUsers();
+    }
 
     @RequestMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
