@@ -17,7 +17,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("all")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAll() {
         return userService.getAllUsers();
