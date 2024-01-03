@@ -59,15 +59,15 @@ public class UserController {
 
     @PostMapping("/workouts/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest, final @PathVariable("userId") String id) {
+    public String createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest, final @PathVariable("userId") String id) {
         workoutRequest.setUserId(id);
-        userService.createWorkout(workoutRequest);
+        return userService.createWorkout(workoutRequest).block();
     }
     @PostMapping("/meals/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void createWorkoutForUser(final @RequestBody MealRequest mealRequest, final @PathVariable("userId") String id) {
+    public String createWorkoutForUser(final @RequestBody MealRequest mealRequest, final @PathVariable("userId") String id) {
         mealRequest.setUserId(id);
-        userService.createMeal(mealRequest);
+        return userService.createMeal(mealRequest).block();
     }
 
 }
