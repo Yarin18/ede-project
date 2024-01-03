@@ -23,7 +23,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getById(final @PathVariable("id") String id) {
         return userService.getById(id);
@@ -35,13 +35,13 @@ public class UserController {
         userService.createUser(userRequest);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(final @PathVariable("id") String id) {
         userService.deleteUser(id);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateUser(final @PathVariable("id") String id, final @RequestBody UserRequest userRequest) {
         userService.updateUser(id, userRequest);
