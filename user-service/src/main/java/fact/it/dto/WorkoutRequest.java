@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class WorkoutRequest {
 
-    private String name, userId, id;
+    private String name, userId;
     private Date date;
     private int minutes;
     private boolean isCardioWorkout;

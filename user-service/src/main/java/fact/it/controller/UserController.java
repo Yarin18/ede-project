@@ -57,14 +57,16 @@ public class UserController {
         return userService.getMealsFromUser(id).collectList().block();
     }
 
-    @PostMapping("/workouts")
+    @PostMapping("/workouts/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest) {
+    public void createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest, final @PathVariable("userId") String id) {
+        workoutRequest.setUserId(id);
         userService.createWorkout(workoutRequest);
     }
-    @PostMapping("/meals")
+    @PostMapping("/meals/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public void createWorkoutForUser(final @RequestBody MealRequest mealRequest) {
+    public void createWorkoutForUser(final @RequestBody MealRequest mealRequest, final @PathVariable("userId") String id) {
+        mealRequest.setUserId(id);
         userService.createMeal(mealRequest);
     }
 

@@ -12,7 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class MealRequest {
-    private Long id;
     private Date date;
     private String name, userId;
     private int totalCalories;

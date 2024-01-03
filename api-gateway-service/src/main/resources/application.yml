@@ -171,17 +171,17 @@ spring:
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Method=POST
-            - Path=/users/workouts
+            - Path=/users/workouts/{userId}
           filters:
-            - SetPath=/api/user/workouts
+            - SetPath=/api/user/workouts/{userId}
         # Create meal
         - id: user-service-create-meal
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Method=POST
-            - Path=/users/meals
+            - Path=/users/meals/{userId}
           filters:
-            - SetPath=/api/user/meals
+            - SetPath=/api/user/meals/{userId}
 
 
 
