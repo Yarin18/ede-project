@@ -135,7 +135,7 @@ public class UserService {
      */
     public Flux<WorkoutResponse> getWorkoutsFromUser(final String userId) {
         return webClient.get()
-                .uri("http://workout-plan:8081/api/workout/all")
+                .uri("http://workout-plan-service:8081/api/workout/all")
                 .retrieve()
                 .bodyToFlux(WorkoutResponse.class).filter(f -> f.getUserId().equals(userId));
     }
@@ -148,7 +148,7 @@ public class UserService {
      */
     public Flux<MealResponse> getMealsFromUser(final String userId) {
         return webClient.get()
-                .uri("http://mysql-nutrition:8082/api/meal/all")
+                .uri("http://nutrition-service:8082/api/meal/all")
                 .retrieve()
                 .bodyToFlux(MealResponse.class).filter(f -> f.getUserId().equals(userId));
     }
