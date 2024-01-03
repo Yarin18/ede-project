@@ -45,27 +45,27 @@ public class UserController {
        return userService.updateUser(id, userRequest);
     }
 
-//    @GetMapping("workouts/{userId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<WorkoutResponse> getWorkoutsFromUser(final @PathVariable("userId") String id) {
-//        return userService.getWorkoutsFromUser(id).collectList().block();
-//    }
-//
-//    @GetMapping("meals/{userId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<MealResponse> getMealsFromUser(final @PathVariable("userId") String id) {
-//        return userService.getMealsFromUser(id).collectList().block();
-//    }
-//
-//    @PostMapping("/workouts")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest) {
-//        userService.createWorkout(workoutRequest);
-//    }
-//    @PostMapping("/meals")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void createWorkoutForUser(final @RequestBody MealRequest mealRequest) {
-//        userService.createMeal(mealRequest);
-//    }
+    @GetMapping("workouts/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkoutResponse> getWorkoutsFromUser(final @PathVariable("userId") String id) {
+        return userService.getWorkoutsFromUser(id).collectList().block();
+    }
+
+    @GetMapping("meals/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MealResponse> getMealsFromUser(final @PathVariable("userId") String id) {
+        return userService.getMealsFromUser(id).collectList().block();
+    }
+
+    @PostMapping("/workouts")
+    @ResponseStatus(HttpStatus.OK)
+    public void createWorkoutForUser(final @RequestBody WorkoutRequest workoutRequest) {
+        userService.createWorkout(workoutRequest);
+    }
+    @PostMapping("/meals")
+    @ResponseStatus(HttpStatus.OK)
+    public void createWorkoutForUser(final @RequestBody MealRequest mealRequest) {
+        userService.createMeal(mealRequest);
+    }
 
 }
