@@ -90,7 +90,7 @@ public class UserService {
      */
     public void createWorkout(final WorkoutRequest workoutRequest) {
         webClient.post()
-                .uri("http://localhost:8081/api/workout")
+                .uri("http://workout-plan:8081/api/workout")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(workoutRequest), WorkoutResponse.class)
                 .retrieve()
@@ -112,7 +112,7 @@ public class UserService {
      */
     public void createMeal(final MealRequest mealRequest) {
         webClient.post()
-                .uri("http://localhost:8082/api/meal")
+                .uri("http://mysql-nutrition:8082/api/meal")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(mealRequest), MealResponse.class)
                 .retrieve()
@@ -135,7 +135,7 @@ public class UserService {
      */
     public Flux<WorkoutResponse> getWorkoutsFromUser(final String userId) {
         return webClient.get()
-                .uri("http://localhost:8081/api/workout/all")
+                .uri("http://workout-plan:8081/api/workout/all")
                 .retrieve()
                 .bodyToFlux(WorkoutResponse.class).filter(f -> f.getUserId().equals(userId));
     }
@@ -148,7 +148,7 @@ public class UserService {
      */
     public Flux<MealResponse> getMealsFromUser(final String userId) {
         return webClient.get()
-                .uri("http://localhost:8082/api/meal/all")
+                .uri("http://mysql-nutrition:8082/api/meal/all")
                 .retrieve()
                 .bodyToFlux(MealResponse.class).filter(f -> f.getUserId().equals(userId));
     }
