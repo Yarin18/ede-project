@@ -88,21 +88,15 @@ public class UserService {
      * Creates a workout for a user based of the request.
      * @param workoutRequest - The workout request.
      */
-    public void createWorkout(final WorkoutRequest workoutRequest) {
-        webClient.post()
+    public Mono<String> createWorkout(final WorkoutRequest workoutRequest) {
+        return webClient.post()
                 .uri("http://workout-plan-service:8081/api/workout")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(workoutRequest), WorkoutResponse.class)
                 .retrieve()
                 .bodyToMono(WorkoutResponse.class)
-                .subscribe(
-                        createdWorkout -> {
-                            System.out.println("Successfully created a workout!");
-                        },
-                        error -> {
-                            System.out.println("Error creating a workout! " + error.getMessage());
-                        }
-                );
+                .map(createdWorkout -> "Success")
+                .onErrorReturn("Failed");
     }
 
     /**
@@ -110,21 +104,15 @@ public class UserService {
      *
      * @param mealRequest the meal request we're creating.
      */
-    public void createMeal(final MealRequest mealRequest) {
-        webClient.post()
+    public Mono<String> createMeal(final MealRequest mealRequest) {
+        return webClient.post()
                 .uri("http://nutrition-service:8082/api/meal")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(mealRequest), MealResponse.class)
                 .retrieve()
                 .bodyToMono(MealResponse.class)
-                .subscribe(
-                        createdWorkout -> {
-                            System.out.println("Successfully created a meal!");
-                        },
-                        error -> {
-                            System.out.println("Error creating a meal! " + error.getMessage());
-                        }
-                );
+                .map(createdMeal -> "Success")
+                .onErrorReturn("Failed");
     }
 
     /**
