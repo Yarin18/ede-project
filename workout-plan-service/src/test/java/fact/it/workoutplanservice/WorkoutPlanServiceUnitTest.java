@@ -90,8 +90,8 @@ public class WorkoutPlanServiceUnitTest {
                 .date(workout.getDate())
                 .build();
 
-        final Workout updated = workoutService.updateWorkout(workout.getId(), updatedWorkout);
-
+        final WorkoutResponse updatedResponse = workoutService.updateWorkout(workout.getId(), updatedWorkout);
+        final Workout updated = new Workout(updatedResponse.getId(), updatedResponse.getName(), updatedResponse.getUserId(), updatedResponse.getDate(), updatedResponse.getMinutes(), updatedWorkout.isCardioWorkout());
         verify(workoutRepository, Mockito.times(1)).save(updated);
     }
 

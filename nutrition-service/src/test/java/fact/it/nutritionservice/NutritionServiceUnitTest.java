@@ -83,7 +83,9 @@ public class NutritionServiceUnitTest {
                 .totalCalories(updatedCalories)
                 .build();
 
-        final Meal updated = mealService.updateMeal(meal.getId(), updatedMeal);
+        final MealResponse updatedResponse = mealService.updateMeal(meal.getId(), updatedMeal);
+
+        final Meal updated = new Meal(updatedResponse.getId(), updatedMeal.getDate(), updatedMeal.getName(), updatedMeal.getUserId(), updatedMeal.getTotalCalories());
 
         verify(mealRepository, times(1)).save(updated);
     }

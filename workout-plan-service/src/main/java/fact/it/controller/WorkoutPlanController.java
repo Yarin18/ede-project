@@ -18,8 +18,8 @@ public class WorkoutPlanController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createWorkout(final @RequestBody WorkoutRequest workoutRequest) {
-        workoutService.createWorkout(workoutRequest);
+    public WorkoutResponse createWorkout(final @RequestBody WorkoutRequest workoutRequest) {
+        return workoutService.createWorkout(workoutRequest);
     }
 
     @GetMapping("/{id}")
@@ -36,16 +36,16 @@ public class WorkoutPlanController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void editWorkout(
+    public WorkoutResponse editWorkout(
             @PathVariable("id") final String id,
             @RequestBody final WorkoutRequest updatedWorkoutRequest) {
-        workoutService.updateWorkout(id, updatedWorkoutRequest);
+        return workoutService.updateWorkout(id, updatedWorkoutRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteWorkout(@PathVariable("id") final String id) {
-        workoutService.deleteWorkout(id);
+    public String deleteWorkout(@PathVariable("id") final String id) {
+        return workoutService.deleteWorkout(id);
     }
 
 }

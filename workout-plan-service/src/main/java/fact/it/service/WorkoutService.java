@@ -20,7 +20,7 @@ public class WorkoutService {
      * Creates a new workout.
      * @param workoutRequest - the request we base our newly created workout of.
      */
-    public Workout createWorkout(final WorkoutRequest workoutRequest) {
+    public WorkoutResponse createWorkout(final WorkoutRequest workoutRequest) {
         final Workout workout = Workout.builder()
                 .id(workoutRequest.getId())
                 .userId(workoutRequest.getUserId())
@@ -30,7 +30,7 @@ public class WorkoutService {
                 .isCardioWorkout(workoutRequest.isCardioWorkout())
                 .build();
         workoutRepository.save(workout);
-        return workout;
+        return mapToWorkoutResponse(workout);
     }
 
     /**
@@ -62,7 +62,7 @@ public class WorkoutService {
      * @param id - The id of the workout we want to edit.
      * @param updatedWorkoutRequest - the request we're passing along to update.
      */
-    public Workout updateWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
+    public WorkoutResponse updateWorkout(String id, WorkoutRequest updatedWorkoutRequest) {
         final Optional<Workout> existingWorkout = workoutRepository.findById(id);
         if (existingWorkout.isPresent()) {
             final Workout res = existingWorkout.get();
@@ -72,7 +72,7 @@ public class WorkoutService {
             res.setMinutes(updatedWorkoutRequest.getMinutes());
             res.setCardioWorkout(updatedWorkoutRequest.isCardioWorkout());
             workoutRepository.save(res);
-            return res;
+            return mapToWorkoutResponse(res);
         }
         return null;
     }
@@ -80,11 +80,12 @@ public class WorkoutService {
     /**
      * @param id - Delete a workout with this id.
      */
-    public void deleteWorkout(final String id) {
+    public String deleteWorkout(final String id) {
         final Optional<Workout> toDelete = workoutRepository.findById(id);
         if (toDelete.isPresent()) {
             workoutRepository.deleteById(id);
-        }
+            return "Success";
+        } else return "Failed";
     }
 
     /**
