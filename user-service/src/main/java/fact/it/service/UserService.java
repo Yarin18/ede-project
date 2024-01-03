@@ -90,7 +90,7 @@ public class UserService {
      */
     public Mono<String> createWorkout(final WorkoutRequest workoutRequest) {
         return webClient.post()
-                .uri("http://workout-plan-service:8081/api/workout/")
+                .uri("http://workout-plan-service:8081/api/workout")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(workoutRequest), WorkoutResponse.class)
                 .retrieve()
@@ -106,7 +106,7 @@ public class UserService {
      */
     public Mono<String> createMeal(final MealRequest mealRequest) {
         return webClient.post()
-                .uri("http://nutrition-service:8082/api/meal/")
+                .uri("http://nutrition-service:8082/api/meal")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .body(Mono.just(mealRequest), MealResponse.class)
                 .retrieve()
