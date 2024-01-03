@@ -45,6 +45,7 @@ public class UserService {
             toUpdate.setPassword(userRequest.getPassword());
             toUpdate.setName(userRequest.getName());
             toUpdate.setWorkoutGoal(userRequest.getWorkoutGoal());
+            userRepository.save(toUpdate);
             return "Success";
         } else return "Failed";
     }
