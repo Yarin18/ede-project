@@ -38,11 +38,20 @@ public class UserService {
     }
 
     /**
+     * Returns a User based of an ID.
+     * @param id - The ID of the user.
+     * @return a User Response object.
+     */
+    public UserResponse getUserById(final String id) {
+        return mapToUserResponse(userRepository.findById(id).orElse(null));
+    }
+
+    /**
      * Updates a user.
      * @param id - the ID of the user we want to update.
      * @param userRequest - The newly updated user.
      */
-    public String updateUser(final String id, final UserRequest userRequest) {
+    public UserResponse updateUser(final String id, final UserRequest userRequest) {
         final Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             final User toUpdate = user.get();
@@ -51,8 +60,8 @@ public class UserService {
             toUpdate.setName(userRequest.getName());
             toUpdate.setWorkoutGoal(userRequest.getWorkoutGoal());
             userRepository.save(toUpdate);
-            return "Success";
-        } else return "Failed";
+            return mapToUserResponse(toUpdate);
+        } else return null;
     }
 
     /**
@@ -62,7 +71,7 @@ public class UserService {
     public String deleteUser(final String id) {
         final Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            userRepository.delete(user.get());
+            userRepository.deleteById(id);
             return "Success";
         } else return "Failed";
     }
