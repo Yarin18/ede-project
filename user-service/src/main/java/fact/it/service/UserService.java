@@ -21,7 +21,7 @@ public class UserService {
      * Creates a new user.
      * @param userRequest - the request we create the new user of.
      */
-    public void createUser(final UserRequest userRequest) {
+    public UserResponse createUser(final UserRequest userRequest) {
         final User user = User.builder()
                 .name(userRequest.getName())
                 .password(userRequest.getPassword())
@@ -29,6 +29,7 @@ public class UserService {
                 .email(userRequest.getEmail())
                 .build();
         userRepository.save(user);
+        return mapToUserResponse(user);
     }
 
     /**
@@ -36,7 +37,7 @@ public class UserService {
      * @param id - the ID of the user we want to update.
      * @param userRequest - The newly updated user.
      */
-    public void updateUser(final String id, final UserRequest userRequest) {
+    public String updateUser(final String id, final UserRequest userRequest) {
         final Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             final User toUpdate = user.get();
@@ -44,15 +45,20 @@ public class UserService {
             toUpdate.setPassword(userRequest.getPassword());
             toUpdate.setName(userRequest.getName());
             toUpdate.setWorkoutGoal(userRequest.getWorkoutGoal());
-        }
+            return "Success";
+        } else return "Failed";
     }
 
     /**
      * Deletes a user.
      * @param id - the ID of the user we want to delete.
      */
-    public void deleteUser(final String id) {
-        userRepository.findById(id).ifPresent(userRepository::delete);
+    public String deleteUser(final String id) {
+        final Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
+            return "Success";
+        } else return "Failed";
     }
 
     /**

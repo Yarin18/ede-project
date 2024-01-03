@@ -29,20 +29,20 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createUser(final @RequestBody UserRequest userRequest) {
-        userService.createUser(userRequest);
+    public UserResponse createUser(final @RequestBody UserRequest userRequest) {
+        return userService.createUser(userRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(final @PathVariable("id") String id) {
-        userService.deleteUser(id);
+    public String deleteUser(final @PathVariable("id") String id) {
+        return userService.deleteUser(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(final @PathVariable("id") String id, final @RequestBody UserRequest userRequest) {
-        userService.updateUser(id, userRequest);
+    public String updateUser(final @PathVariable("id") String id, final @RequestBody UserRequest userRequest) {
+       return userService.updateUser(id, userRequest);
     }
 
 //    @GetMapping("workouts/{userId}")

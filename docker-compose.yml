@@ -47,6 +47,7 @@ services:
       - connection-network
   
   nutrition-service:
+    restart: on-failure
     depends_on:
       - mysql-nutrition
       - user-service
