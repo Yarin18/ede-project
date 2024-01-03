@@ -151,13 +151,37 @@ spring:
           filters:
             - SetPath=/api/user/{id}
         # Get workouts of user
-        - id: user-service-delete
+        - id: user-service-get-workouts
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
           predicates:
-            - Method=DELETE
-            - Path=/users/{id}
+            - Method=GET
+            - Path=/users/workouts/{userId}
           filters:
-            - SetPath=/api/user/{id}
+            - SetPath=/api/user/workouts/{userId}
+        # Get meals from user
+        - id: user-service-get-meals
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=GET
+            - Path=/users/meals/{userId}
+          filters:
+            - SetPath=/api/user/meals/{userId}
+        # Create workout
+        - id: user-service-create-workout
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=POST
+            - Path=/users/workouts
+          filters:
+            - SetPath=/api/user/workouts
+        # Create meal
+        - id: user-service-create-meal
+          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Method=POST
+            - Path=/users/meals
+          filters:
+            - SetPath=/api/user/meals
 
 
 
