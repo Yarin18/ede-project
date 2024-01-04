@@ -228,7 +228,7 @@ This endpoint allows you to get all the meals that have the userID of the Reques
 This endpoint allows you to delete a meal by passing in a meal id as a path variable.
 ![MealDelete](images/meals_delete.JPG)
 
-To verify that this has worked, I will be calling the endpoint (http://localhost:8084/meals) again, to return all meals.
+To verify that this has worked, I will be calling the endpoint (GET - http://localhost:8084/meals) again, to return all meals.
 ![MealGetAllProof](images/meals_getall_proof.JPG)
 As you see, now it returns an empty list.
 
@@ -237,21 +237,63 @@ These are all endpoints that are rerouted from the WorkoutPlanService in the API
 
 #### (POST) (Authorized) http://localhost:8084/workouts
 This endpoint allows you to create a new workout
+Request Body
+```json
+{
+  "name": "Morning Jog",
+  "userId": "6596ac978a779d6ff5683b77",
+  "date": "2024-01-04T06:00:00.000Z",
+  "minutes": 30,
+  "isCardioWorkout": true
+}
+```
+Below I will send an HTTP request to prove that this has in fact worked.
+
 
 #### (GET) (Authorized) http://localhost:8084/workouts
+This endpoint allows you to request all workouts available.
+![WorkoutGetAll](images/workout_getall.JPG)
 
 #### (PUT) (Authorized) http://localhost:8084/workouts/{id}
+This endpoint allows you to edit an existing workout of the ID you passed in as Path Variable.
+The ID in this example will be the same ID as the workout we created above (6596bf1a02c4de33ca6ecc47)
+In this example we're going to update the name to "Evening Lift", and set "isCardioWorkout" to false.
+
+![WorkoutEdit](images/workout_edit.JPG)
+
+Below I will do an HTTP request by this ID to show that it has in fact worked.
 
 #### (GET) (Authorized) http://localhost:8084/workouts/{id}
-
-#### (DELETE) (Authorized) http://localhost:8084/workouts/{id}
+This endpoint allows you to get a workout based of a specific ID passed in as a PathVariable.
+In this example we use the ID of the workout we edited above (6596bf1a02c4de33ca6ecc47)
+![WorkoutGetId](images/workout_getid.JPG)
 
 #### (GET) (Authorized) http://localhost:8084/workouts?userId=6596ac978a779d6ff5683b77
+This endpoint allows you to get a list of workouts from a specific userid. This userid is passed in
+as a Request Parameter.
+
+![WorkoutGetUser](images/workout_getuser.JPG)
 
 
+#### (DELETE) (Authorized) http://localhost:8084/workouts/{id}
+This endpoint allows you to delete a workout. 
+
+![WorkoutDelete](images/workout_delete.JPG)
+
+To show that this worked, I will now show a list of all workouts by doing (GET - http://localhost:8084/workouts)
+![WorkoutDeleteProof](images/workout_delete_proof.JPG)
+0
 #### (DELETE) (Authorized) (http://localhost:8084/user/{id})
+This is the endpoint that allows you to delete a user, we will now delete the user we have been using 
+throughout this entire Endpoint Documentation.
 
-TODO USER EDELTE ENDPOINT PIMEJGOLN GJRNG JRG NRJG
+![UserDelete](images/user_delete.JPG)
+
+And now if we request all users by calling the endpoint (GET - http://localhost:8084/users)
+we see that that user has in fact been deleted.
+
+![UserDeleteProof](images/user_delete_proof.JPG)
+
 
 ## Conclusion
 This project has been by far one of the most interesting projects I've ever had provided by school. I'm not a fan of Docker and I had almost no experience with it,
