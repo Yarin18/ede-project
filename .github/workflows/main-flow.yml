@@ -19,7 +19,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./workout-plan-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./nutrition-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
@@ -73,7 +73,7 @@ jobs:
 
       - name: Build, test, and package project
         working-directory: ./user-service
-        run: mvn package -DskipTests
+        run: mvn package -B
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
