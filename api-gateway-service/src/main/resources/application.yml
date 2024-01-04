@@ -23,7 +23,7 @@ spring:
         jwt:
           issuer-uri: https://accounts.google.com
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
-          
+
   cloud:
     gateway:
       routes:
@@ -36,6 +36,11 @@ spring:
             - Path=/workouts
           filters:
             - SetPath=/api/workout/all
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{keyResolver}"
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Get workout by id
         - id: workout-plan-service-get-id
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
