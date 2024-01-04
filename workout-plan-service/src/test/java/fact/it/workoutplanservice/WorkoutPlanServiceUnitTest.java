@@ -35,7 +35,6 @@ public class WorkoutPlanServiceUnitTest {
     @Test
     public void testCreateWorkout() {
         final WorkoutRequest workoutRequest = new WorkoutRequest();
-        workoutRequest.setId("1");
         workoutRequest.setCardioWorkout(true);
         workoutRequest.setDate(Date.from(Instant.now()));
         workoutRequest.setName("Going for a run");
@@ -82,7 +81,6 @@ public class WorkoutPlanServiceUnitTest {
         final int updatedMinutes = 35;
 
         final WorkoutRequest updatedWorkout = WorkoutRequest.builder()
-                .id(workout.getId())
                 .userId(workout.getUserId())
                 .isCardioWorkout(true)
                 .name(updatedName)
