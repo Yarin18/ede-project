@@ -105,6 +105,18 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 6
                 redis-rate-limiter.requestedToken: 1
+        - id: workout-plan-service-get-from-user
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=GET
+            - Path=/workouts/user
+          filters:
+            - SetPath=/api/workout/user
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # NUTRITION SERVICE
         # Get all meals
         - id: nutrition-service-all
@@ -166,6 +178,18 @@ spring:
             - Path=/meals/{id}
           filters:
             - SetPath=/api/meal/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
+        - id: nutrition-service-get-from-user
+          uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=GET
+            - Path=/meals/user
+          filters:
+            - SetPath=/api/meal/user
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 2

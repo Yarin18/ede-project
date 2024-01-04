@@ -145,16 +145,72 @@ and then to finish off the redis configuration, I've had to create a template an
 ## Endpoints
 In this section I will be describing each endpoint (as configured in the API gateway), with proof of the working of it.
 All of these endpoints also require authorization, this is what happens if you are not authorized and try to make a request.
-![Unauthorized](images/authorized.JPG)
+![Unauthorized](images/unauthorized.JPG)
 
 And this is the result if you are authorizxed
-![Authorized](images/unauthorized.JPG)
+![Authorized](images/authorized.JPG)
 
-#### http://localhost:8084/test
+
+#### (GET) (Authorized) http://localhost:8084/test
 This endpoint is merely a test endpoint for rate-limiting. Ever since I've introduced rate limiting my HTTP requests have been crazy slow,
 and I am unsure whether this is the cause of my rate limiting, which it appears to be.
 
+![TestEndpoint](images/authorized.JPG)
+**For these endpoints I will be creating a user first, this userid will be used throughout the entirety of this section the deletion of the user will be the very last endpoint I showcase!**
 
+### User Endpoints
+These are all endpoints that are rerouted from the UserService in the API gateway
+#### (POST) (Authorized) http://localhost:8084/users
+This endpoint deals with the creation of a new user.
+Request Body
+```json
+{
+  "name": "John Doe",
+  "password": "password123",
+  "email": "john@example.com",
+  "workoutGoal": 5
+}
+```
+![UserPost](images/user_post.JPG)
+
+#### (GET) (Authorized) http://localhost:8084/users
+This endpoint returns a list of all users.
+![UserGetAll](images/users_get_all.JPG)
+
+#### (GET) (Authorized) http://localhost:8084/users/{id}
+This endpoint returns a user based of the ID passed in as path variable.
+![UserGetId](images/users_get_id.JPG)
+
+
+#### (PUT) (Authorized) http://localhost:8084/users/{id}
+This endpoint allows the editing of a user, in this example we are going to edit
+the name to "James Doe", and the workout goal to "25".
+![UserEdit](images/users_edit.JPG)
+
+Now I will do another get request by id (same as bove), to display it has actually updated.
+![UserEditProof](images/users_edit_proof.JPG)
+
+### Workout Endpoints
+These are all endpoints that are rerouted from the WorkoutPlanService in the API gateway
+
+#### (POST) http://localhost:8084/workouts
+
+
+#### (GET) http://localhost:8084/workouts
+
+#### (PUT) http://localhost:8084/workouts/{id}
+
+#### (GET) http://localhost:8084/workouts/{id}
+
+#### (DELETE) http://localhost:8084/workouts/{id}
+
+#### (GET) http://localhost:8084/workouts?userId=<id>
+
+
+### Nutrition Endpoints
+
+
+TODO USER EDELTE ENDPOINT PIMEJGOLN GJRNG JRG NRJG
 
 ## Conclusion
 This project has been by far one of the most interesting projects I've ever had provided by school. I'm not a fan of Docker and I had almost no experience with it,

@@ -22,7 +22,6 @@ public class WorkoutService {
      */
     public WorkoutResponse createWorkout(final WorkoutRequest workoutRequest) {
         final Workout workout = Workout.builder()
-                .id(workoutRequest.getId())
                 .userId(workoutRequest.getUserId())
                 .name(workoutRequest.getName())
                 .date(workoutRequest.getDate())
