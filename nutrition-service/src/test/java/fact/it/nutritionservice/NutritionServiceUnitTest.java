@@ -28,7 +28,7 @@ public class NutritionServiceUnitTest {
 
     @Mock
     private MealRepository mealRepository;
-    
+
     @Test
     public void testCreateMeal() {
         final MealRequest mealRequest = new MealRequest();

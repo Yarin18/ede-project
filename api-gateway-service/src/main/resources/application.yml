@@ -27,18 +27,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: workout-plan-service-all
+        - id: workout-plan-service-test
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=GET
             - Path=/test
           filters:
             - SetPath=/api/workout/test
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
-                redis-rate-limiter.requestedToken: 1
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 1
+#                redis-rate-limiter.burstCapacity: 1
+#                redis-rate-limiter.requestedToken: 1
         # WORKOUT SERVICE
         # Get all workouts
         - id: workout-plan-service-all
