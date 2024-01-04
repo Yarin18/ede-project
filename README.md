@@ -224,6 +224,14 @@ This will also prove that the previous PUT request has worked.
 This endpoint allows you to get all the meals that have the userID of the Request Parameter you fill in (userId)
 ![MealFromUser](images/meals_fromuser.JPG)
 
+### (DELETE) (Authorized) http://localhost:8084/meals/{id}
+This endpoint allows you to delete a meal by passing in a meal id as a path variable.
+![MealDelete](images/meals_delete.JPG)
+
+To verify that this has worked, I will be calling the endpoint (http://localhost:8084/meals) again, to return all meals.
+![MealGetAllProof](images/meals_getall_proof.JPG)
+As you see, now it returns an empty list.
+
 ### Workout Endpoints
 These are all endpoints that are rerouted from the WorkoutPlanService in the API gateway
 
