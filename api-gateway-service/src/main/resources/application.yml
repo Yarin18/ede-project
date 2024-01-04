@@ -27,6 +27,18 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: workout-plan-service-all
+          uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Method=GET
+            - Path=/test
+          filters:
+            - SetPath=/api/workout/test
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
+                redis-rate-limiter.requestedToken: 1
         # WORKOUT SERVICE
         # Get all workouts
         - id: workout-plan-service-all
@@ -38,8 +50,8 @@ spring:
             - SetPath=/api/workout/all
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 1
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
                 redis-rate-limiter.requestedToken: 1
         # Get workout by id
         - id: workout-plan-service-get-id
@@ -225,59 +237,3 @@ spring:
                 redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 6
                 redis-rate-limiter.requestedToken: 1
-        # Get workouts of user
-        - id: user-service-get-workouts
-          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
-          predicates:
-            - Method=GET
-            - Path=/users/workouts/{userId}
-          filters:
-            - SetPath=/api/user/workouts/{userId}
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 6
-                redis-rate-limiter.requestedToken: 1
-        # Get meals from user
-        - id: user-service-get-meals
-          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
-          predicates:
-            - Method=GET
-            - Path=/users/meals/{userId}
-          filters:
-            - SetPath=/api/user/meals/{userId}
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 6
-                redis-rate-limiter.requestedToken: 1
-        # Create workout
-        - id: user-service-create-workout
-          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
-          predicates:
-            - Method=POST
-            - Path=/users/workouts
-          filters:
-            - SetPath=/api/user/workouts
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 6
-                redis-rate-limiter.requestedToken: 1
-        # Create meal
-        - id: user-service-create-meal
-          uri: http://${USER_SERVICE_BASEURL:localhost:8083}
-          predicates:
-            - Method=POST
-            - Path=/users/meals
-          filters:
-            - SetPath=/api/user/meals
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 6
-                redis-rate-limiter.requestedToken: 1
-
-
-
-

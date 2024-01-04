@@ -1,27 +1,19 @@
 import fact.it.dto.UserRequest;
 import fact.it.dto.UserResponse;
-import fact.it.dto.WorkoutRequest;
-import fact.it.dto.WorkoutResponse;
 import fact.it.model.User;
 import fact.it.repository.UserRepository;
 import fact.it.service.UserService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -196,80 +188,6 @@ public class UserServiceApplicationUnitTest {
 
         verify(userRepository, times(1)).findById(userId);
     }
-
-//    @Test
-//    public void testCreateWorkout_Success() {
-//        // Dummy data
-//        WorkoutRequest workoutRequest = WorkoutRequest.builder()
-//                .userId("user123")
-//                .name("Morning Run")
-//                .minutes(30)
-//                .isCardioWorkout(true)
-//                .date(new Date())
-//                .build();
-//
-//        WorkoutResponse workoutResponse = WorkoutResponse.builder()
-//                .id("1")
-//                .userId(workoutRequest.getUserId())
-//                .name(workoutRequest.getName())
-//                .minutes(workoutRequest.getMinutes())
-//                .isCardioWorkout(workoutRequest.isCardioWorkout())
-//                .date(workoutRequest.getDate())
-//                .build();
-//
-//        when(webClient.post()
-//                .uri(eq("http://workout-plan-service:8081/api/workout"))
-//                .header(eq(HttpHeaders.CONTENT_TYPE), eq(MediaType.APPLICATION_JSON_VALUE))
-//                .body(any(Mono.class), eq(WorkoutResponse.class))
-//                .retrieve()
-//                .bodyToMono(eq(WorkoutResponse.class))
-//        ).thenReturn(Mono.just(workoutResponse));
-//
-//        Mono<String> result = userService.createWorkout(workoutRequest);
-//
-//        // Dummy assert
-//        assertEquals("Success", result.block());
-//
-//        verify(webClient, times(1)).post()
-//                .uri(eq("http://workout-plan-service:8081/api/workout"))
-//                .header(eq(HttpHeaders.CONTENT_TYPE), eq(MediaType.APPLICATION_JSON_VALUE))
-//                .body(any(Mono.class), eq(WorkoutResponse.class))
-//                .retrieve()
-//                .bodyToMono(eq(WorkoutResponse.class));
-//    }
-//
-//    @Test
-//    public void testCreateWorkout_Failure() {
-//        // Dummy data
-//        WorkoutRequest workoutRequest = WorkoutRequest.builder()
-//                .userId("user123")
-//                .name("Morning Run")
-//                .minutes(30)
-//                .isCardioWorkout(true)
-//                .date(new Date())
-//                .build();
-//
-//        when(webClient.post()
-//                .uri(eq("http://workout-plan-service:8081/api/workout"))
-//                .header(eq(HttpHeaders.CONTENT_TYPE), eq(MediaType.APPLICATION_JSON_VALUE))
-//                .body(any(Mono.class), eq(WorkoutResponse.class))
-//                .retrieve()
-//                .bodyToMono(eq(WorkoutResponse.class))
-//        ).thenReturn(Mono.error(new RuntimeException("Something went wrong")));
-//
-//        Mono<String> result = userService.createWorkout(workoutRequest);
-//
-//        // Dummy assert
-//        assertEquals("Failed", result.block());
-//
-//        verify(webClient, times(1)).post()
-//                .uri(eq("http://workout-plan-service:8081/api/workout"))
-//                .header(eq(HttpHeaders.CONTENT_TYPE), eq(MediaType.APPLICATION_JSON_VALUE))
-//                .body(any(Mono.class), eq(WorkoutResponse.class))
-//                .retrieve()
-//                .bodyToMono(eq(WorkoutResponse.class));
-//    }
-
 
 }
 
