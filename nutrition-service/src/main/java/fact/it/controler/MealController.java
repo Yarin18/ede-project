@@ -34,6 +34,12 @@ public class MealController {
         return mealService.updateMeal(id, meal);
     }
 
+    @GetMapping("/user")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MealResponse> getMealsFromUser(final @RequestParam("userId") String userId) {
+        return mealService.getAllMealsByUser(userId);
+    }
+
     @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     public MealResponse createMeal(final @RequestBody MealRequest meal) {

@@ -40,6 +40,12 @@ public class WorkoutPlanController {
         return workoutService.getAllWorkouts();
     }
 
+    @GetMapping("user")
+    @ResponseStatus(HttpStatus.OK)
+    public List<WorkoutResponse> getAllWorkoutsFromUser(final @RequestParam String userId) {
+        return workoutService.getAllWorkoutsByUserId(userId);
+    }
+
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public WorkoutResponse editWorkout(
