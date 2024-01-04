@@ -71,9 +71,9 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=POST
-            - Path=/workouts/{id}
+            - Path=/workouts/
           filters:
-            - SetPath=/api/workout/{id}
+            - SetPath=/api/workout/
             - name: RequestRateLimiter
               args:
                 redis-rate-limiter.replenishRate: 2

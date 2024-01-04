@@ -235,22 +235,21 @@ As you see, now it returns an empty list.
 ### Workout Endpoints
 These are all endpoints that are rerouted from the WorkoutPlanService in the API gateway
 
-#### (POST) http://localhost:8084/workouts
+#### (POST) (Authorized) http://localhost:8084/workouts
+This endpoint allows you to create a new workout
+
+#### (GET) (Authorized) http://localhost:8084/workouts
+
+#### (PUT) (Authorized) http://localhost:8084/workouts/{id}
+
+#### (GET) (Authorized) http://localhost:8084/workouts/{id}
+
+#### (DELETE) (Authorized) http://localhost:8084/workouts/{id}
+
+#### (GET) (Authorized) http://localhost:8084/workouts?userId=6596ac978a779d6ff5683b77
 
 
-#### (GET) http://localhost:8084/workouts
-
-#### (PUT) http://localhost:8084/workouts/{id}
-
-#### (GET) http://localhost:8084/workouts/{id}
-
-#### (DELETE) http://localhost:8084/workouts/{id}
-
-#### (GET) http://localhost:8084/workouts?userId=<id>
-
-
-### Nutrition Endpoints
-
+#### (DELETE) (Authorized) (http://localhost:8084/user/{id})
 
 TODO USER EDELTE ENDPOINT PIMEJGOLN GJRNG JRG NRJG
 
