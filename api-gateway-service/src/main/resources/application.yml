@@ -38,7 +38,7 @@ spring:
             - SetPath=/api/workout/all
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.replenishRate: 2
                 redis-rate-limiter.burstCapacity: 6
                 redis-rate-limiter.requestedToken: 1
         # Get workout by id
@@ -49,6 +49,11 @@ spring:
             - Path=/workouts/{id}
           filters:
             - SetPath=/api/workout/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Create workout
         - id: workout-plan-service-create
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
@@ -57,6 +62,11 @@ spring:
             - Path=/workouts/{id}
           filters:
             - SetPath=/api/workout/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Update workout
         - id: workout-plan-service-update
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
@@ -65,6 +75,11 @@ spring:
             - Path=/workouts/{id}
           filters:
             - SetPath=/api/workout/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Delete workout
         - id: workout-plan-service-delete
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
@@ -73,6 +88,11 @@ spring:
             - Path=/workouts/{id}
           filters:
             - SetPath=/api/workout/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # NUTRITION SERVICE
         # Get all meals
         - id: nutrition-service-all
@@ -82,6 +102,11 @@ spring:
             - Path=/meals
           filters:
             - SetPath=/api/meal/all
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Get meal by id
         - id: nutrition-service-get-id
           uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
@@ -90,6 +115,11 @@ spring:
             - Path=/meals/{id}
           filters:
             - SetPath=/api/meal/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Create meal
         - id: nutrition-service-create
           uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
@@ -98,6 +128,11 @@ spring:
             - Path=/meals
           filters:
             - SetPath=/api/meal
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Update meal
         - id: nutrition-service-update
           uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
@@ -106,6 +141,11 @@ spring:
             - Path=/meals/{id}
           filters:
             - SetPath=/api/meal/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Delete Meal
         - id: nutrition-service-delete
           uri: http://${NUTRITION_SERVICE_BASEURL:localhost:8082}
@@ -114,6 +154,11 @@ spring:
             - Path=/meals/{id}
           filters:
             - SetPath=/api/meal/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # USER SERVICE
         # Get all users
         - id: user-service-all
@@ -123,6 +168,11 @@ spring:
             - Path=/users
           filters:
             - SetPath=/api/user/all
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Get user by id
         - id: user-service-get-id
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -131,6 +181,11 @@ spring:
             - Path=/users/{id}
           filters:
             - SetPath=/api/user/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Create user
         - id: user-service-create
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -139,6 +194,11 @@ spring:
             - Path=/users
           filters:
             - SetPath=/api/user
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Update user
         - id: user-service-update
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -147,6 +207,11 @@ spring:
             - Path=/users/{id}
           filters:
             - SetPath=/api/user/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Delete user
         - id: user-service-delete
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -155,6 +220,11 @@ spring:
             - Path=/users/{id}
           filters:
             - SetPath=/api/user/{id}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Get workouts of user
         - id: user-service-get-workouts
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -163,6 +233,11 @@ spring:
             - Path=/users/workouts/{userId}
           filters:
             - SetPath=/api/user/workouts/{userId}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Get meals from user
         - id: user-service-get-meals
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -171,6 +246,11 @@ spring:
             - Path=/users/meals/{userId}
           filters:
             - SetPath=/api/user/meals/{userId}
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Create workout
         - id: user-service-create-workout
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -179,6 +259,11 @@ spring:
             - Path=/users/workouts
           filters:
             - SetPath=/api/user/workouts
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
         # Create meal
         - id: user-service-create-meal
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
@@ -187,6 +272,11 @@ spring:
             - Path=/users/meals
           filters:
             - SetPath=/api/user/meals
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.requestedToken: 1
 
 
 
