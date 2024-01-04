@@ -23,7 +23,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebFluxSecurity
-@EnableRedisRepositories
 public class Config {
 
     @Bean
@@ -40,27 +39,6 @@ public class Config {
                         .jwt(withDefaults())
                 );
         return serverHttpSecurity.build();
-    }
-
-    /** The redis configuration .*/
-    @Bean
-    public RedisStandaloneConfiguration redisConfig() {
-        return new RedisStandaloneConfiguration("redis", 6379);
-    }
-
-    /** The method to create a LettuceConnectionFactory based of the redisConfig. */
-    @Bean
-    public LettuceConnectionFactory lettuceConnectionFactory() {
-        return new LettuceConnectionFactory(redisConfig());
-    }
-
-    /** Fully configured RedisTemplate.*/
-    @Bean
-    public RedisTemplate<String, Object> template() {
-        final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(lettuceConnectionFactory());
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        return redisTemplate;
     }
 
     @Bean
