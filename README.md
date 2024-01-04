@@ -6,6 +6,7 @@ Table Of Content
 3. Microservices
 4. API Gateway (+ Rate Limiting & Security)
 5. Endpoints
+6. Conclusion
 
 
 ## Descriptipn
@@ -143,8 +144,20 @@ and then to finish off the redis configuration, I've had to create a template an
 
 ## Endpoints
 In this section I will be describing each endpoint (as configured in the API gateway), with proof of the working of it.
+All of these endpoints also require authorization, this is what happens if you are not authorized and try to make a request.
+![Unauthorized](images/authorized.JPG)
+
+And this is the result if you are authorizxed
+![Authorized](images/unauthorized.JPG)
+
+#### http://localhost:8084/test
+This endpoint is merely a test endpoint for rate-limiting. Ever since I've introduced rate limiting my HTTP requests have been crazy slow,
+and I am unsure whether this is the cause of my rate limiting, which it appears to be.
 
 
 
+## Conclusion
+This project has been by far one of the most interesting projects I've ever had provided by school. I'm not a fan of Docker and I had almost no experience with it,
+but afer this project I feel very confident in the use of docker and docker compose. Besides that, I learned how to make multiple microservices, and have them work together and be linked together through an API gateway.
 
-
+This project was really fun to work on, and I've learned a lot about microservices as well.
