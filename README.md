@@ -190,6 +190,40 @@ the name to "James Doe", and the workout goal to "25".
 Now I will do another get request by id (same as bove), to display it has actually updated.
 ![UserEditProof](images/users_edit_proof.JPG)
 
+### Nutrition Endpoints
+These are all endpoints that are rerouted from the NutritionService in the API gateway
+
+#### (POST) (Authorized) http://localhost:8084/meals
+This endpoint deals with the creation of a new meal.
+Request Body
+```json
+   {
+  "date": "2024-01-04T18:30:00.000Z",
+  "name": "Dinner",
+  "userId": "6596ac978a779d6ff5683b77",
+  "totalCalories": 600
+}
+```
+![MealPost](images/meals_post.JPG)
+### (GET) (Authorized) http://localhost:8084/meals
+This endpoint returns a List of all meals
+![MealGetAll](images/meals_getall.JPG)
+
+#### (PUT) (Authorized) http://localhost:8084/meals/{id}
+This endpoint allows you to update a meal with a given ID.
+For this test we're going to change the name to "Lunch", and the totalCalories to "450"
+![MealUpdate](images/meals_edit.JPG)
+
+### (GET) (Authorized) http://localhost:8084/meals/{id}
+This endpoint allows you to get a specific meal by adding an ID in as Path Variable.
+This will also prove that the previous PUT request has worked.
+
+![MealGetId](images/meals_getid.JPG)
+
+### (GET) (Authorized) http://localhost:8084/meals?userId=6596ac978a779d6ff5683b77
+This endpoint allows you to get all the meals that have the userID of the Request Parameter you fill in (userId)
+![MealFromUser](images/meals_fromuser.JPG)
+
 ### Workout Endpoints
 These are all endpoints that are rerouted from the WorkoutPlanService in the API gateway
 
