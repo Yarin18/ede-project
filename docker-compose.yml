@@ -74,6 +74,7 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-workout-plan
+      MONGODB_NAME: workout-plan-service
     networks:
       - connection-network
 
@@ -86,6 +87,7 @@ services:
     environment:
       MONGODB_PORT: 27018
       MONGODB_HOST: mongo-user
+      MONGODB_NAME: user-service
     networks:
       - connection-network
 
