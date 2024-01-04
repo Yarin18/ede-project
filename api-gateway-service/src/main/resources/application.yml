@@ -38,8 +38,8 @@ spring:
             - SetPath=/api/workout/all
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 2
-                redis-rate-limiter.burstCapacity: 6
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 1
                 redis-rate-limiter.requestedToken: 1
         # Get workout by id
         - id: workout-plan-service-get-id
