@@ -28,8 +28,7 @@ public class NutritionServiceUnitTest {
 
     @Mock
     private MealRepository mealRepository;
-
-
+    
     @Test
     public void testCreateMeal() {
         final MealRequest mealRequest = new MealRequest();
@@ -42,7 +41,6 @@ public class NutritionServiceUnitTest {
 
         verify(mealRepository, times(1)).save(any(Meal.class));
     }
-
 
     @Test
     public void testDeleteMeal() {
@@ -112,7 +110,6 @@ public class NutritionServiceUnitTest {
 
         verify(mealRepository, times(1)).findAll();
     }
-
 
     @Test
     public void testGetAllMealsByUserId() {
