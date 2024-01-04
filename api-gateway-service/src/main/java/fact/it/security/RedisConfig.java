@@ -15,7 +15,7 @@ public class RedisConfig {
      * The redis configuration .
      */
     @Bean
-    public RedisStandaloneConfiguration redisConfig() {
+    public RedisStandaloneConfiguration redisConfiguration() {
         return new RedisStandaloneConfiguration("redis", 6379);
     }
 
@@ -24,7 +24,7 @@ public class RedisConfig {
      */
     @Bean
     public LettuceConnectionFactory lettuceConnectionFactory() {
-        return new LettuceConnectionFactory(redisConfig());
+        return new LettuceConnectionFactory(redisConfiguration());
     }
 
     /**
