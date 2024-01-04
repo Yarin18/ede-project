@@ -205,7 +205,7 @@ Request Body
 }
 ```
 ![MealPost](images/meals_post.JPG)
-### (GET) (Authorized) http://localhost:8084/meals
+#### (GET) (Authorized) http://localhost:8084/meals
 This endpoint returns a List of all meals
 ![MealGetAll](images/meals_getall.JPG)
 
@@ -220,11 +220,11 @@ This will also prove that the previous PUT request has worked.
 
 ![MealGetId](images/meals_getid.JPG)
 
-### (GET) (Authorized) http://localhost:8084/meals?userId=6596ac978a779d6ff5683b77
+#### (GET) (Authorized) http://localhost:8084/meals?userId=6596ac978a779d6ff5683b77
 This endpoint allows you to get all the meals that have the userID of the Request Parameter you fill in (userId)
 ![MealFromUser](images/meals_fromuser.JPG)
 
-### (DELETE) (Authorized) http://localhost:8084/meals/{id}
+#### (DELETE) (Authorized) http://localhost:8084/meals/{id}
 This endpoint allows you to delete a meal by passing in a meal id as a path variable.
 ![MealDelete](images/meals_delete.JPG)
 
