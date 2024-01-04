@@ -85,7 +85,7 @@ services:
     ports:
       - "8083:8083"
     environment:
-      MONGODB_PORT: 27018
+      MONGODB_PORT: 27017
       MONGODB_HOST: mongo-user
       MONGODB_NAME: user-service
     networks:
