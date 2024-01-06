@@ -149,7 +149,6 @@ All of these endpoints also require authorization, this is what happens if you a
 And this is the result if you are authorized
 ![Authorized](images/authorized.JPG)
 
-![TestEndpoint](images/authorized.JPG)
 **For these endpoints I will be creating a user first, this userid will be used throughout the entirety of this section the deletion of the user will be the very last endpoint I showcase!**
 
 ### User Endpoints
