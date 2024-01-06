@@ -134,7 +134,7 @@ I added **every** endpoint in all of my services to the API Gateway.
 
 ### Security
 For the security of my endpoints I used OAuth2. For this I had to configure a SecurityWebFilterChain. 
-In that configuration I went ahead and forced authorized access on all matches to the /workout /meal and /user patterns.
+In that configuration I went ahead and forced on everything that is not with prefix /public.
 I also had to make some adjustments to the application.yml for this.
 
 ### Rate Limiting
@@ -147,13 +147,8 @@ In this section I will be describing each endpoint (as configured in the API gat
 All of these endpoints also require authorization, this is what happens if you are not authorized and try to make a request.
 ![Unauthorized](images/unauthorized.JPG)
 
-And this is the result if you are authorizxed
+And this is the result if you are authorized
 ![Authorized](images/authorized.JPG)
-
-
-#### (GET) (Authorized) http://localhost:8084/test
-This endpoint is merely a test endpoint for rate-limiting. Ever since I've introduced rate limiting my HTTP requests have been crazy slow,
-and I am unsure whether this is the cause of my rate limiting, which it appears to be.
 
 ![TestEndpoint](images/authorized.JPG)
 **For these endpoints I will be creating a user first, this userid will be used throughout the entirety of this section the deletion of the user will be the very last endpoint I showcase!**
