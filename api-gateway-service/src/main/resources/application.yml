@@ -33,7 +33,7 @@ spring:
           uri: http://${WORKOUT_PLAN_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Method=GET
-            - Path=/public/workouts
+            - Path=/workouts
           filters:
             - SetPath=/api/workout/all
         # Get workout by id
@@ -184,7 +184,7 @@ spring:
           uri: http://${USER_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Method=GET
-            - Path=/users
+            - Path=/public/users
           filters:
             - SetPath=/api/user/all
             - name: RequestRateLimiter
