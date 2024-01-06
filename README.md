@@ -144,10 +144,10 @@ and then to finish off the redis configuration, I've had to create a template an
 ## Endpoints
 In this section I will be describing each endpoint (as configured in the API gateway), with proof of the working of it.
 All of these endpoints also require authorization, this is what happens if you are not authorized and try to make a request.
-![Unauthorized](images/unauthorized.JPG)
+![Unauthorized](images/unauthorized_new.JPG)
 
 And this is the result if you are authorized
-![Authorized](images/authorized.JPG)
+![Authorized](images/authorized_new.JPG)
 
 **For these endpoints I will be creating a user first, this userid will be used throughout the entirety of this section the deletion of the user will be the very last endpoint I showcase!**
 
