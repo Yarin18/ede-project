@@ -46,7 +46,6 @@ public class Workout {
 ```
 Below is a list of all the endpoints available in this service, they will be explained more in dept with proof of working more down below in the "Endpoints" sections.
 ```
-GET - /api/workout/test
 GET - /api/workout/{id}
 GET - /api/workout/all
 GET - /api/workout/user?userId=<userId>
