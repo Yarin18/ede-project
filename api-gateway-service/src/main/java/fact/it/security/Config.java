@@ -19,7 +19,7 @@ public class Config {
         serverHttpSecurity
                 .authorizeExchange(exchange ->
                         exchange
-                                .pathMatchers("/workout", "/meal", "/user")
+                                .pathMatchers("/public")
                                 .permitAll()
                                 .anyExchange()
                                 .authenticated()

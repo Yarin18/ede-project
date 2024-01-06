@@ -42,7 +42,7 @@ services:
       MYSQL_DATABASE: nutridb
       MYSQL_ROOT_PASSWORD: 1234
     ports:
-      - "3307:3306"
+      - "3306:3306"
     networks:
       - connection-network
   
@@ -58,7 +58,7 @@ services:
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: 1234
       MYSQL_DB_HOST: mysql-nutrition
-      MYSQL_DB_PORT: 3307
+      MYSQL_DB_PORT: 3306
       MYSQL_DATABASE: nutridb
 
     networks:

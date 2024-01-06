@@ -16,12 +16,6 @@ public class WorkoutPlanController {
 
     private final WorkoutService workoutService;
 
-    @GetMapping("/test")
-    @ResponseStatus(HttpStatus.OK)
-    public String test() {
-        return "Test success!";
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public WorkoutResponse createWorkout(final @RequestBody WorkoutRequest workoutRequest) {
