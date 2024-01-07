@@ -146,7 +146,7 @@ In this section I will be describing each endpoint (as configured in the API gat
 All of these endpoints also require authorization, this is what happens if you are not authorized and try to make a request.
 ![Unauthorized](images/unauthorized_new.JPG)
 
-And this is the result if you are authorized
+And this is the result if you are authorized (it is empty because nothing has been added yet)
 ![Authorized](images/authorized_new.JPG)
 
 **For these endpoints I will be creating a user first, this userid will be used throughout the entirety of this section the deletion of the user will be the very last endpoint I showcase!**
@@ -166,7 +166,7 @@ Request Body
 ```
 ![UserPost](images/user_post.JPG)
 
-#### (GET) (Authorized) http://localhost:8084/users
+#### (GET) (NOT AUTHORIZED) http://localhost:8084/public/users
 This endpoint returns a list of all users.
 ![UserGetAll](images/users_get_all.JPG)
 
